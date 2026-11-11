@@ -1,0 +1,12 @@
+{
+  "reset": "0x7F7F7F",
+  "pmin": 30000,
+  "pmax": 125000,
+  "tmin": -40,
+  "tmax": 85,
+  "sources": [
+    "src/bmp581.ipp:MeasureOnce, waitForcedShown, WaitDataReady, readData, settle",
+    "inc/bmp581_registers.hpp:kDataReset",
+    "inc/bmp581_types.hpp:kPressureMinPa, kPressureMaxPa, kTemperatureMinC, kTemperatureMaxC"
+  ]
+}

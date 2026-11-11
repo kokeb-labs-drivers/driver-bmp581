@@ -1,0 +1,21 @@
+---
+# How this repository was made from kokeb-labs/driver-template. The template's drift check
+# (tools/scaffold.py --check-drift, CI: kokeb-labs/ci-tools ru-template-drift) scaffolds the template again
+# with these arguments and compares the files it manages. List a file under `local` only when it differs on
+# purpose, with the reason.
+template: 8068322e01b6b5c3ede59bff7a97a4694a33168b
+kind: "driver"
+name: "bmp581"
+bus: "i2c"
+namespace: "bmp581"
+description: "C++20 driver for the Bosch BMP581 barometric pressure and temperature sensor on I2C and SPI."
+include_root: null
+org: "kokeb-labs-drivers"
+repo: "driver-bmp581"
+author: "The driver-bmp581 authors"
+license: "MIT"
+datasheet: "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf"
+platforms: [host, esp32]
+local:
+  - path: .claude/skills/datasheet-conformance/SKILL.md
+    reason: "links this chip's datasheet and revision"

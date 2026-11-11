@@ -1,0 +1,53 @@
+# Datasheet map
+
+The driver follows the BMP581 datasheet. This page says which revision, where to get it, and where each part of
+the driver is described in it, so you can check any behaviour against the source. Section names and page numbers
+are the datasheet's own (the printed page numbers).
+
+
+<!-- generated: datasheet-map -->
+- **Datasheet: BMP581 Barometric Pressure Sensor**, Bosch Sensortec BST-BMP581-DS004-13, revision 1.13 (2025-04). Get it
+  from the [vendor page](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp581/) or as a
+  [PDF](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf).
+  SHA-256 of the file used: `ddcf4202c4fdf2ab6ad86f22b67ba4d2471d76b9ce510397cacfe398400ab439`.
+
+| Topic | Datasheet section | Page | In the driver | Explained on |
+| --- | --- | --- | --- | --- |
+| Measurement range, resolution and accuracy | 2 Specification; Table 1 Pressure Performance; Table 2 Temperature Performance | [p. 8](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=8) | `kPressureMinPa`, `kPressureMaxPa`, `kTemperatureMinC`, `kTemperatureMaxC`, `Error::OutOfRange` | [API guide](api-guide.md), [Hardware](hardware.md) |
+| Supplies, timing and conversion times | 2 Specification; Table 4 Electrical characteristics | [p. 10](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=10) | `kPowerUpUs`, `kSoftResetUs`, `kStandbyUs`, `kStartupUs`, `kStartupDeepUs`, `ConversionTimeMaxUs()` | [Hardware](hardware.md), [Architecture](architecture.md), [Contract](contract.md) |
+| Block diagram and power management | 4.1 Block diagram; 4.2 Power management | [p. 14](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=14) | (the chip's structure; no API) | [Hardware](hardware.md) |
+| Power modes, deep standby and mode transitions | 4.3 Power modes; 4.3.1 STANDBY mode; 4.3.2 DEEP STANDBY; 4.3.7 Mode transitions | [p. 16](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=16) | `SetPowerMode()`, `PowerMode`, `EntersDeepStandby()`, `Config::deep_standby`, `ApplyConfig()` (standby with deep standby off before the writes) | [API guide](api-guide.md), [Configuration](configuration.md), [Contract](contract.md) |
+| Forced mode | 4.3.3 FORCED mode | [p. 16](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=16) | `MeasureOnce()`, `ForcedMeasurementMaxUs()` | [API guide](api-guide.md), [Quickstart](quickstart.md) |
+| Normal mode and the ODR/OSR check | 4.3.4 NORMAL mode; Table 7 maximum nominal ODR setting per OSR settings | [p. 17](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=17) | `Validate()`, `MaxOdrMilliHz()`, `Error::ConfigRejected`, `GetLastOsrEff()` | [Configuration](configuration.md), [Troubleshooting](troubleshooting.md) |
+| Register writes only in standby | 4.3.8 Mode-depending register write restrictions | [p. 18](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=18) | `ApplyConfig()` (standby first, then a full read-back) | [Contract](contract.md), [Architecture](architecture.md) |
+| Post-power-up checks | 4.3.9 Post-power-up procedure | [p. 18](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=18) | `EnsureInitialized()`: CHIP_ID, STATUS.status_nvm_rdy, INT_STATUS = 0x10 | [Architecture](architecture.md), [Troubleshooting](troubleshooting.md) |
+| Soft reset | 4.3.10 Soft reset; 7.36 Register (0x7E) Command Register | [p. 18](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=18) | `EnsureInitialized()`, `Deinitialize()` | [Architecture](architecture.md), [Contract](contract.md) |
+| Pressure enable and oversampling | 4.4.1 Pressure and temperature measurement enable; 4.4.2 Oversampling ratio; Table 9 | [p. 18](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=18) | `Oversampling`, `Config::pressure_oversampling`, OSR_CONFIG.press_en (the reset sentinel) | [Configuration](configuration.md), [Contract](contract.md) |
+| IIR filter | 4.4.4 IIR filter; Table 10 IIR filter settings and bandwidth | [p. 19](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=19) | `IirFilter`, `Config::pressure_iir`, `Config::iir_to_data_registers` | [Configuration](configuration.md) |
+| Data registers and data shadowing | 4.5 Data registers; 4.5.1 Data Shadowing | [p. 22](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=22) | `ReadMeasurement()`, `PressurePa()`, `TemperatureC()`, `SignExtend24()` | [API guide](api-guide.md), [Architecture](architecture.md) |
+| FIFO | 4.6 FIFO; 4.6.1 FIFO Configuration; 4.6.3 FIFO data readout; Tables 11 to 14 | [p. 22](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=22) | `ReadFifo()`, `ReadFifoCount()`, `FifoSample`, `FifoFrame`, `FifoMode` | [API guide](api-guide.md), [Configuration](configuration.md) |
+| FIFO flush on configuration changes | 4.6.4 FIFO configuration changes; Table 4 t_reconf | [p. 25](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=25) | `ApplyConfig()`, `SetPowerMode()` (t_reconf with the FIFO on), `kReconfUs` | [API guide](api-guide.md), [Contract](contract.md) |
+| Interrupt sources, out of range and power-on reset | 4.7 Interrupts; 4.7.2.3 Out-of-range interrupt; 4.7.2.4 Power-on reset interrupt | [p. 25](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=25) | `ReadInterruptStatus()`, `GetLatchedInterrupts()`, `WaitDataReady()`, `CheckForReset()` | [API guide](api-guide.md), [Contract](contract.md), [Configuration](configuration.md) |
+| INT pin | 4.7.3 Interrupt pin | [p. 27](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=27) | `Config::int_pin_enable`, `IntMode`, `IntPolarity`, `IntDrive` | [Configuration](configuration.md), [Hardware](hardware.md) |
+| NVM data registers (the reset marker) | 4.8.1 NVM User Range; 7.25 Register (0x2C) NVM data (LSB); 7.26 Register (0x2D) NVM data (MSB) | [p. 29](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=29) | `EnsureInitialized()` (writes the marker), `ApplyConfig()` (reads it back) | [Contract](contract.md) |
+| Interface selection (I2C, SPI) | 5.1 Protocol Selection; Table 16 | [p. 31](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=31) | `SpiInterface` (the dummy read in `EnsureInitialized()`), `I2cInterface` | [Porting](porting.md), [Hardware](hardware.md) |
+| SPI timing | 5.2.1 Interface timing; Table 18 SPI timings | [p. 32](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=32) | `spi::kMaxClockHz`, `spi::kMinCsHighNs`, `spi::kCsHoldNs` | [Porting](porting.md) |
+| Read burst address increment | 5.4 Read burst address increment | [p. 36](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=36) | `ReadMeasurement()` (one 12-byte read), `ReadFifo()` | [Architecture](architecture.md) |
+| SPI protocol | 5.5 SPI Protocol; 5.5.2 SPI Write Operation; 5.5.3 SPI read operation; 5.5.4 SPI hybrid bursts | [p. 36](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=36) | `SpiInterface`, `SpiPort`, `spi::kSpiMode` | [Porting](porting.md) |
+| I2C protocol and addresses | 5.6 I2C protocol; 5.6.1 I2C write operation; 5.6.2 I2C read operation | [p. 38](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=38) | `I2cInterface`, `I2cPort`, `i2c::kI2cAddress`, `i2c::kI2cAddressSdoHigh`, `i2c::kMaxClockHz` | [Porting](porting.md), [Hardware](hardware.md), [Troubleshooting](troubleshooting.md) |
+| Pins and connection diagrams | 6.1 Pin Out; 6.2 Connection Diagrams; Table 28 | [p. 46](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=46) | (no control pin; CSB selects the interface) | [Hardware](hardware.md), [Quickstart](quickstart.md) |
+| Register map | 7 Register Map | [p. 50](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=50) | `bmp581::reg`, `ReadRegister()` | [API guide](api-guide.md) |
+| Identification and status | 7.1 Register (0x01) ASIC identification ID; 7.22 Register (0x28) Status register | [p. 51](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=51) | `kChipId`, `GetRevision()`, `GetLastStatus()`, `Error::DeviceIdMismatch`, `Error::DeviceFault` | [Troubleshooting](troubleshooting.md) |
+| INT pad drive | 7.5 Register (0x14) Interrupt configuration register | [p. 52](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=52) | `Config::int_pad_drive`, `Validate()` (bit 3 with open drain only) | [Configuration](configuration.md) |
+| Interrupt status (clear-on-read) | 7.21 Register (0x27) Interrupt status register (clear-on-read) | [p. 58](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=58) | `GetLatchedInterrupts()`, `GetLastIntStatus()` | [Contract](contract.md) |
+| OSR and ODR configuration | 7.33 Register (0x36) OSR configuration; 7.34 Register (0x37) ODR configuration; 7.35 OSR_EFF | [p. 64](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=64) | `OutputDataRate`, `OdrMilliHz()`, `PowerMode`, `CheckForReset()` (OSR_CONFIG to OSR_EFF, reserved bits) | [Configuration](configuration.md), [Contract](contract.md) |
+<!-- /generated -->
+
+## When the datasheet and the driver differ
+
+The driver is written against the revision above. If you have a newer revision, compare its revision history with
+the topics above; a change to a pin, a register, a timing or a value the driver uses is a bug report for this
+repository. Where the driver deliberately goes beyond the datasheet, the [Contract](contract.md) says so.
+
+The repository never contains the PDF itself: vendors own their documents. Download it from the vendor, and compare
+its SHA-256 with the one above to confirm you have the same file.

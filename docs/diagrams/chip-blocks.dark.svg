@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="839" viewBox="0 0 1200 839" role="img" aria-labelledby="chip-blocks-title chip-blocks-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-blocks-title">Inside the BMP581</title>
+<desc id="chip-blocks-desc">Block diagram of the BMP581: its function blocks, how they connect and which package pins reach each block.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="838" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">HARDWARE</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">Inside the BMP581</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">Function blocks and their links, from the datasheet's block diagram (4.1 Block diagram, Figure 1, p. 14). Pins on the edge carry their package number.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<rect x="160" y="137.8" width="912" height="640" rx="14" fill="#1B232E" stroke="#3A4656" stroke-width="1.2"/>
+<path d="M167 233.8 L168 233.8 L168 185.8 L496 185.8 L496 233.8 L512 233.8" fill="none" stroke="#FB7185" stroke-width="1.8"/>
+<path d="M167 665.8 L168 665.8 L168 577.8 L496 577.8 L496 665.8 L512 665.8" fill="none" stroke="#94A3B8" stroke-width="1.8"/>
+<path d="M1065 609.8 L1024 609.8" fill="none" stroke="#60A5FA" stroke-width="1.8"/>
+<path d="M1065 633.8 L1024 633.8" fill="none" stroke="#A78BFA" stroke-width="1.8"/>
+<path d="M1065 657.8 L1024 657.8" fill="none" stroke="#60A5FA" stroke-width="1.8"/>
+<path d="M1065 681.8 L1024 681.8" fill="none" stroke="#2BB3A3" stroke-width="1.8"/>
+<path d="M1065 705.8 L1024 705.8" fill="none" stroke="#4ADE80" stroke-width="1.8"/>
+<path d="M1065 729.8 L1024 729.8" fill="none" stroke="#FB7185" stroke-width="1.8"/>
+<path d="M404 361.8 L508 361.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M716 361.8 L820 361.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M920 413.8 L920 453.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M920 549.8 L920 589.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)" marker-start="url(#fk-arrow-rail)"/>
+<path d="M820 497.8 L716 497.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="200" y="201.8" width="200" height="72" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="200" y="209.8" width="4" height="56" rx="2" fill="#94A3B8"/>
+<rect x="512" y="201.8" width="200" height="72" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="512" y="209.8" width="4" height="56" rx="2" fill="#94A3B8"/>
+<rect x="824" y="201.8" width="200" height="72" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="824" y="209.8" width="4" height="56" rx="2" fill="#94A3B8"/>
+<rect x="200" y="321.8" width="200" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="200" y="329.8" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="512" y="321.8" width="200" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="512" y="329.8" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="824" y="321.8" width="200" height="88" rx="10" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="824" y="329.8" width="4" height="72" rx="2" fill="#FBBF24"/>
+<rect x="200" y="457.8" width="200" height="88" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="200" y="465.8" width="4" height="72" rx="2" fill="#94A3B8"/>
+<rect x="512" y="457.8" width="200" height="88" rx="10" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="512" y="465.8" width="4" height="72" rx="2" fill="#A78BFA"/>
+<rect x="824" y="457.8" width="200" height="88" rx="10" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="824" y="465.8" width="4" height="72" rx="2" fill="#A78BFA"/>
+<rect x="200" y="593.8" width="200" height="152" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="200" y="601.8" width="4" height="136" rx="2" fill="#94A3B8"/>
+<rect x="512" y="593.8" width="200" height="152" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="512" y="601.8" width="4" height="136" rx="2" fill="#FB7185"/>
+<rect x="824" y="593.8" width="200" height="152" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="824" y="601.8" width="4" height="136" rx="2" fill="#60A5FA"/>
+<rect x="153" y="226.8" width="14" height="14" rx="3" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="153" y="658.8" width="14" height="14" rx="3" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="1065" y="602.8" width="14" height="14" rx="3" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="1065" y="626.8" width="14" height="14" rx="3" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<rect x="1065" y="650.8" width="14" height="14" rx="3" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="1065" y="674.8" width="14" height="14" rx="3" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="1065" y="698.8" width="14" height="14" rx="3" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="1065" y="722.8" width="14" height="14" rx="3" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="176" y="162.8" font-size="13" font-weight="700" fill="#E2E8F0">BMP581</text>
+<text x="242.4" y="162.8" font-size="12" fill="#E2E8F0">LGA-10</text>
+<text x="220" y="228.6" font-size="15" font-weight="700" fill="#E2E8F0">Reference</text>
+<text x="220" y="253.4" font-size="13" fill="#D2DAE4">voltage reference</text>
+<text x="532" y="228.6" font-size="15" font-weight="700" fill="#E2E8F0">Analog LDO</text>
+<text x="532" y="253.4" font-size="13" fill="#D2DAE4">analog voltage regulator</text>
+<text x="844" y="228.6" font-size="15" font-weight="700" fill="#E2E8F0">Digital LDO</text>
+<text x="844" y="253.4" font-size="13" fill="#D2DAE4">digital voltage regulator</text>
+<text x="220" y="348.6" font-size="15" font-weight="700" fill="#FDE68A">Sensor</text>
+<text x="220" y="373.4" font-size="13" fill="#D2DAE4">pressure and</text>
+<text x="220" y="392.2" font-size="13" fill="#D2DAE4">temperature element</text>
+<text x="532" y="348.6" font-size="15" font-weight="700" fill="#FDE68A">Front-end</text>
+<text x="532" y="373.4" font-size="13" fill="#D2DAE4">analog front-end</text>
+<text x="844" y="348.6" font-size="15" font-weight="700" fill="#FDE68A">A/D</text>
+<text x="220" y="484.6" font-size="15" font-weight="700" fill="#E2E8F0">NVM</text>
+<text x="220" y="509.4" font-size="13" fill="#D2DAE4">trimming, 6 user bytes</text>
+<text x="532" y="484.6" font-size="15" font-weight="700" fill="#DDD6FE">FIFO</text>
+<text x="532" y="509.4" font-size="13" fill="#D2DAE4">32 frames</text>
+<text x="844" y="484.6" font-size="15" font-weight="700" fill="#DDD6FE">Logic</text>
+<text x="844" y="509.4" font-size="13" fill="#D2DAE4">compensation, IIR,</text>
+<text x="844" y="528.2" font-size="13" fill="#D2DAE4">registers</text>
+<text x="220" y="620.5" font-size="15" font-weight="700" fill="#E2E8F0">OSC</text>
+<text x="220" y="645.4" font-size="13" fill="#D2DAE4">oscillator</text>
+<text x="532" y="620.5" font-size="15" font-weight="700" fill="#FECDD3">POR</text>
+<text x="532" y="645.4" font-size="13" fill="#D2DAE4">power-on reset</text>
+<text x="844" y="620.5" font-size="15" font-weight="700" fill="#BFDBFE">Interface</text>
+<text x="844" y="645.4" font-size="13" fill="#D2DAE4">I2C, I3C, SPI</text>
+<text x="146" y="238.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VDD  10</text>
+<text x="146" y="670.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#E8EDF3">VSS  3, 8, 9</text>
+<text x="1086" y="614.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SDI  4</text>
+<text x="1086" y="638.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SDO  5</text>
+<text x="1086" y="662.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SCK  2</text>
+<text x="1086" y="686.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CSB  6</text>
+<text x="1086" y="710.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">INT  7</text>
+<text x="1086" y="734.3" font-size="12.5" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">VDDIO  1</text>
+<circle cx="512" cy="233.8" r="3" fill="#FB7185"/>
+<circle cx="512" cy="665.8" r="3" fill="#94A3B8"/>
+<circle cx="1024" cy="609.8" r="3" fill="#60A5FA"/>
+<circle cx="1024" cy="633.8" r="3" fill="#A78BFA"/>
+<circle cx="1024" cy="657.8" r="3" fill="#60A5FA"/>
+<circle cx="1024" cy="681.8" r="3" fill="#2BB3A3"/>
+<circle cx="1024" cy="705.8" r="3" fill="#4ADE80"/>
+<circle cx="1024" cy="729.8" r="3" fill="#FB7185"/>
+<rect x="887.1" y="559.8" width="65.9" height="20" rx="10" fill="#0E131A"/>
+<text x="920" y="574.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">registers</text>
+<rect x="740.7" y="487.8" width="54.6" height="20" rx="10" fill="#0E131A"/>
+<text x="768" y="502.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">frames</text>
+<rect x="32" y="793.2" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="54" y="804.8" font-size="12.5" fill="#9AA6B5">power</text>
+<rect x="117.6" y="793.2" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="139.6" y="804.8" font-size="12.5" fill="#9AA6B5">ground</text>
+<rect x="208.5" y="793.2" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="230.5" y="804.8" font-size="12.5" fill="#9AA6B5">bus</text>
+<rect x="277.4" y="793.2" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="299.4" y="804.8" font-size="12.5" fill="#9AA6B5">digital in</text>
+<rect x="375.8" y="793.2" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="397.8" y="804.8" font-size="12.5" fill="#9AA6B5">digital out</text>
+<rect x="483.3" y="793.2" width="14" height="14" rx="4" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<text x="505.3" y="804.8" font-size="12.5" fill="#9AA6B5">digital in/out</text>
+<path d="M606.6 799.4L636.6 799.4" fill="none" stroke="#6C7889" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="650.6" y="804.8" font-size="12.5" fill="#9AA6B5">signal or data between blocks</text>
+</svg>

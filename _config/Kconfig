@@ -1,0 +1,44 @@
+# Kconfig for the BMP581 driver. The root CMakeLists.txt registers it with ESP-IDF
+# (idf_component_register(... KCONFIG _config/Kconfig)), so `idf.py menuconfig` shows
+# "BMP581 pressure sensor". The values reach the code only through
+# inc/bmp581_kconfig.hpp; no public driver signature uses them.
+menuconfig BMP581
+    bool "BMP581 pressure sensor"
+    default y
+    help
+      Defaults for bmp581::KconfigDefaults(). The driver itself does not
+      need Kconfig; outside ESP-IDF the same defaults come from Config{}.
+
+if BMP581
+
+config BMP581_PRESSURE_OVERSAMPLING
+    int "Pressure oversampling (1, 2, 4, ... 128 samples)"
+    range 1 128
+    default 1
+    help
+      OSR_CONFIG.osr_p. Other values round down to a power of two.
+
+config BMP581_TEMPERATURE_OVERSAMPLING
+    int "Temperature oversampling (1, 2, 4, ... 128 samples)"
+    range 1 128
+    default 1
+    help
+      OSR_CONFIG.osr_t. Other values round down to a power of two.
+
+config BMP581_DATA_READY
+    bool "Report data ready (INT_SOURCE.drdy_data_reg_en)"
+    default n
+    help
+      Needed by WaitDataReady().
+
+config BMP581_STARTUP_TIMEOUT_MS
+    int "NVM-ready timeout at start-up (ms)"
+    range 1 10000
+    default 10
+
+config BMP581_DATA_READY_TIMEOUT_MS
+    int "Data-ready timeout (ms)"
+    range 1 10000
+    default 2000
+
+endif

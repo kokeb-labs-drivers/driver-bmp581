@@ -1,0 +1,93 @@
+{
+  "chip-blocks": {
+    "title": "Inside the BMP581",
+    "alt": "Block diagram of the BMP581: its function blocks, how they connect and which package pins reach each block.",
+    "description": "The BMP581's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/bmp581_i2c_interface.hpp",
+      "inc/bmp581_spi_interface.hpp"
+    ]
+  },
+  "chip-circuit-i2c": {
+    "title": "BMP581: I2C connection",
+    "alt": "Schematic of the BMP581 i2c connection: the chip with U2 MCU, R1 resistor 4.7 kΩ, R2 resistor 4.7 kΩ, C1 capacitor 100 nF, C2 capacitor 100 nF; the MCU wires carry the port hooks Transfer(), WriteRead() or Transfer().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 1120,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/bmp581_i2c_interface.hpp",
+      "inc/bmp581_spi_interface.hpp"
+    ]
+  },
+  "chip-circuit-spi4": {
+    "title": "BMP581: SPI 4-wire connection",
+    "alt": "Schematic of the BMP581 spi 4-wire connection: the chip with U2 MCU, R1 resistor 47 kΩ, C1 capacitor 100 nF, C2 capacitor 100 nF; the MCU wires carry the port hooks Transfer(), WriteRead() or Transfer().",
+    "description": "A schematic. The MCU is on the left, each of its pins level with the chip pin it connects to; above each wire is the hook of the driver's port that drives or reads it. Supply pins point up to their supply and decoupling, ground pins down. Pins on the right carry the loads and the pins tied to a supply or ground; a cross marks a pin left open. A dot is a junction; wires that cross without a dot are not connected.",
+    "profile": "detail",
+    "width": 1024,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/bmp581_i2c_interface.hpp",
+      "inc/bmp581_spi_interface.hpp"
+    ]
+  },
+  "chip-pinout": {
+    "title": "BMP581 pinout, LGA-10",
+    "alt": "Pinout of the BMP581 in LGA-10, top view: 10 pins, each with its name, its electrical type as a colour and the driver hook that uses it.",
+    "description": "The BMP581 seen from the top, in its LGA-10 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.",
+    "profile": "detail",
+    "width": 987,
+    "source": "docs/hardware.yml",
+    "sources": [
+      "docs/hardware.yml",
+      "inc/bmp581_i2c_interface.hpp",
+      "inc/bmp581_spi_interface.hpp"
+    ]
+  },
+  "driver-layers": {
+    "title": "The layers, one of them yours",
+    "alt": "Layer diagram: your application calls the BMP581 core, which sends register reads and writes through the I2C or SPI port contract to the port class you write, which drives the chip; the core and the contract are the same on every MCU.",
+    "description": "Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.",
+    "profile": "overview",
+    "width": 1200,
+    "source": "docs/diagrams/figures/driver-layers.py",
+    "sources": [
+      "inc/bmp581.hpp:public calls",
+      "inc/bmp581_i2c_interface.hpp:I2cInterface",
+      "inc/bmp581_spi_interface.hpp:SpiInterface"
+    ]
+  },
+  "measurement": {
+    "title": "From a conversion to a value",
+    "alt": "Flow chart: MeasureOnce() or WaitDataReady() leads to one 12-byte read of TEMP_DATA to STATUS, then the checks: reserved registers and stuck lines, the reset flag, the reset value, the measurement range; each failing check returns its error, and only a frame that passes them all is a value.",
+    "description": "Two entry points at the top. MeasureOnce() runs the reset check (INT_STATUS, then OSR_CONFIG to OSR_EFF in one read), writes ODR_CONFIG with pwr_mode = forced, polls it until it shows forced (at most t_startup) to prove the measurement started, waits the typical conversion time less 5 percent, then polls the same registers until the chip is back in standby, at most the datasheet maximum. In normal or continuous mode, WaitDataReady() polls INT_STATUS until drdy. Both end in the same read: one 12-byte burst of TEMP_DATA to STATUS, so temperature and pressure come from one conversion (data shadowing). The checks below run in order, and each failure has its error card on the right: the reserved registers must read 0x00 and the frame must not be all 0x00 (a stuck or floating line); INT_STATUS goes to the latch, and a por in it runs the reset check; the reset value 0x7F7F7F is no measurement and runs the reset check too; the values must lie in the measurement range. Only then is the value returned, in 1/64 Pa and 1/65536 degrees Celsius.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/diagrams/figures/measurement.py",
+    "sources": [
+      "src/bmp581.ipp:MeasureOnce, waitForcedShown, WaitDataReady, readData, settle",
+      "inc/bmp581_registers.hpp:kDataReset",
+      "inc/bmp581_types.hpp:kPressureMinPa, kPressureMaxPa, kTemperatureMinC, kTemperatureMaxC"
+    ]
+  },
+  "start-up": {
+    "title": "What EnsureInitialized() does",
+    "alt": "Flow chart of EnsureInitialized(): check the configuration and the address, wait the power-up time, soft reset, check CHIP_ID, NVM ready and the reset flag, write and read back the configuration, enter the power mode; each failing step returns its error.",
+    "description": "Top to bottom on the left, the steps of the first EnsureInitialized() call; once it has succeeded a later call runs the reset check (one 3-byte read of OSR_CONFIG to OSR_EFF) and returns Ok, or starts again at the top when the chip reset. The configuration and the I2C address are checked before any I/O. Step 1 waits the power-up time and, on SPI, sends the dummy read that changes the chip from I2C to SPI. Step 2 is the soft reset: standby with deep standby off first (the datasheet does not say that deep standby takes CMD), then CMD = 0xB6, which the chip does not acknowledge over I2C, then the soft reset time, and on SPI the selection read again, since a reset returns the interface to I2C. Step 3 is the datasheet's post-power-up check: CHIP_ID, STATUS polled until the NVM is ready with no error, and INT_STATUS, which must read 0x10 (the reset happened) and then 0x00 (the read cleared it), a check no stuck, floating or looped-back line can pass. Step 4 leaves the deep standby the reset left the chip in (standby with deep standby off, then t_standby), writes the marker to NVM_DATA once, writes the configuration one register per transfer with ODR_CONFIG last, reads all of it and the marker back, reads INT_STATUS once more, and enters the configured power mode, read back too. Each card on the right is the error a step returns; after any failure the driver stays uninitialised and the next call starts at the top.",
+    "profile": "detail",
+    "width": 1200,
+    "source": "docs/diagrams/figures/start-up.py",
+    "sources": [
+      "src/bmp581.ipp:EnsureInitialized, initialize, resetChip, identify, waitNvmReady, checkResetFlags, configure",
+      "inc/bmp581_registers.hpp:kChipIdValue, kIntStatusAfterReset, kCmdSoftReset",
+      "inc/bmp581_types.hpp:kPowerUpUs, kSoftResetUs"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "bmp581",
+  "cls": "BMP581",
+  "calls": [
+    "EnsureInitialized",
+    "Deinitialize",
+    "ApplyConfig",
+    "SetPowerMode",
+    "CheckForReset",
+    "ReadMeasurement",
+    "MeasureOnce",
+    "WaitDataReady",
+    "ReadInterruptStatus",
+    "ReadFifoCount",
+    "ReadFifo",
+    "ReadRegister"
+  ],
+  "sources": [
+    "inc/bmp581.hpp:public calls",
+    "inc/bmp581_i2c_interface.hpp:I2cInterface",
+    "inc/bmp581_spi_interface.hpp:SpiInterface"
+  ],
+  "bus": "I2C or SPI",
+  "base": "I2cInterface or SpiInterface",
+  "hooks": [
+    "EnsureInitialized",
+    "Write",
+    "WriteRead",
+    "GetLastFailure",
+    "Transfer"
+  ]
+}

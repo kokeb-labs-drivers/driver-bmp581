@@ -1,0 +1,12 @@
+{
+  "chip_id": "0x50",
+  "after_reset": "0x10",
+  "cmd": "0xB6",
+  "powerup_us": 2000,
+  "reset_us": 2000,
+  "sources": [
+    "src/bmp581.ipp:EnsureInitialized, initialize, resetChip, identify, waitNvmReady, checkResetFlags, configure",
+    "inc/bmp581_registers.hpp:kChipIdValue, kIntStatusAfterReset, kCmdSoftReset",
+    "inc/bmp581_types.hpp:kPowerUpUs, kSoftResetUs"
+  ]
+}

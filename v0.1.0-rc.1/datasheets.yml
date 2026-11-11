@@ -1,0 +1,196 @@
+---
+# The vendor documents this driver was written against (handbook ADR-0019), and where the driver relies on them.
+# Never commit a PDF: `sha256` identifies the exact file that was used, so a reader can confirm they hold the same
+# revision. `pdf` is a stable direct link when the vendor publishes one (page links are built from it, adding
+# `page_offset` when the printed page numbers differ from the PDF's); otherwise readers download from `url`.
+#
+# The README card, docs/datasheet.md and the "Datasheet" box on each page are generated from this file by
+# tools/docs/generators/datasheet.py (`kokeb-docs gen`).
+#
+# The Bosch Sensortec BMP581 datasheet, revision 1.13, is the only source of the driver's behaviour. Its printed
+# page numbers ("n | 75") match the PDF's pages.
+documents:
+  - id: ds
+    vendor: Bosch Sensortec
+    title: BMP581 Barometric Pressure Sensor
+    kind: Datasheet
+    number: BST-BMP581-DS004-13
+    revision: "1.13"
+    date: 2025-04
+    url: https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp581/
+    pdf: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf
+    page_offset: 0
+    sha256: "ddcf4202c4fdf2ab6ad86f22b67ba4d2471d76b9ce510397cacfe398400ab439"
+
+# One row per thing the driver takes from a document: the datasheet's own section names and printed page
+# numbers, the driver API that implements it, and the docs pages that explain it (file names in docs/).
+topics:
+  - topic: Measurement range, resolution and accuracy
+    doc: ds
+    section: 2 Specification; Table 1 Pressure Performance; Table 2 Temperature Performance
+    page: 8
+    driver: "`kPressureMinPa`, `kPressureMaxPa`, `kTemperatureMinC`, `kTemperatureMaxC`, `Error::OutOfRange`"
+    docs: [api-guide, hardware]
+  - topic: Supplies, timing and conversion times
+    doc: ds
+    section: 2 Specification; Table 4 Electrical characteristics
+    page: 10
+    driver: "`kPowerUpUs`, `kSoftResetUs`, `kStandbyUs`, `kStartupUs`, `kStartupDeepUs`, `ConversionTimeMaxUs()`"
+    docs: [hardware, architecture, contract]
+  - topic: Block diagram and power management
+    doc: ds
+    section: 4.1 Block diagram; 4.2 Power management
+    page: 14
+    driver: "(the chip's structure; no API)"
+    docs: [hardware]
+  - topic: Power modes, deep standby and mode transitions
+    doc: ds
+    section: 4.3 Power modes; 4.3.1 STANDBY mode; 4.3.2 DEEP STANDBY; 4.3.7 Mode transitions
+    page: 16
+    driver: "`SetPowerMode()`, `PowerMode`, `EntersDeepStandby()`, `Config::deep_standby`, `ApplyConfig()` (standby
+      with deep standby off before the writes)"
+    docs: [api-guide, configuration, contract]
+  - topic: Forced mode
+    doc: ds
+    section: 4.3.3 FORCED mode
+    page: 16
+    driver: "`MeasureOnce()`, `ForcedMeasurementMaxUs()`"
+    docs: [api-guide, quickstart]
+  - topic: Normal mode and the ODR/OSR check
+    doc: ds
+    section: 4.3.4 NORMAL mode; Table 7 maximum nominal ODR setting per OSR settings
+    page: 17
+    driver: "`Validate()`, `MaxOdrMilliHz()`, `Error::ConfigRejected`, `GetLastOsrEff()`"
+    docs: [configuration, troubleshooting]
+  - topic: Register writes only in standby
+    doc: ds
+    section: 4.3.8 Mode-depending register write restrictions
+    page: 18
+    driver: "`ApplyConfig()` (standby first, then a full read-back)"
+    docs: [contract, architecture]
+  - topic: Post-power-up checks
+    doc: ds
+    section: 4.3.9 Post-power-up procedure
+    page: 18
+    driver: "`EnsureInitialized()`: CHIP_ID, STATUS.status_nvm_rdy, INT_STATUS = 0x10"
+    docs: [architecture, troubleshooting]
+  - topic: Soft reset
+    doc: ds
+    section: 4.3.10 Soft reset; 7.36 Register (0x7E) Command Register
+    page: 18
+    driver: "`EnsureInitialized()`, `Deinitialize()`"
+    docs: [architecture, contract]
+  - topic: Pressure enable and oversampling
+    doc: ds
+    section: 4.4.1 Pressure and temperature measurement enable; 4.4.2 Oversampling ratio; Table 9
+    page: 18
+    driver: "`Oversampling`, `Config::pressure_oversampling`, OSR_CONFIG.press_en (the reset sentinel)"
+    docs: [configuration, contract]
+  - topic: IIR filter
+    doc: ds
+    section: 4.4.4 IIR filter; Table 10 IIR filter settings and bandwidth
+    page: 19
+    driver: "`IirFilter`, `Config::pressure_iir`, `Config::iir_to_data_registers`"
+    docs: [configuration]
+  - topic: Data registers and data shadowing
+    doc: ds
+    section: 4.5 Data registers; 4.5.1 Data Shadowing
+    page: 22
+    driver: "`ReadMeasurement()`, `PressurePa()`, `TemperatureC()`, `SignExtend24()`"
+    docs: [api-guide, architecture]
+  - topic: FIFO
+    doc: ds
+    section: 4.6 FIFO; 4.6.1 FIFO Configuration; 4.6.3 FIFO data readout; Tables 11 to 14
+    page: 22
+    driver: "`ReadFifo()`, `ReadFifoCount()`, `FifoSample`, `FifoFrame`, `FifoMode`"
+    docs: [api-guide, configuration]
+  - topic: FIFO flush on configuration changes
+    doc: ds
+    section: 4.6.4 FIFO configuration changes; Table 4 t_reconf
+    page: 25
+    driver: "`ApplyConfig()`, `SetPowerMode()` (t_reconf with the FIFO on), `kReconfUs`"
+    docs: [api-guide, contract]
+  - topic: Interrupt sources, out of range and power-on reset
+    doc: ds
+    section: 4.7 Interrupts; 4.7.2.3 Out-of-range interrupt; 4.7.2.4 Power-on reset interrupt
+    page: 25
+    driver: "`ReadInterruptStatus()`, `GetLatchedInterrupts()`, `WaitDataReady()`, `CheckForReset()`"
+    docs: [api-guide, contract, configuration]
+  - topic: INT pin
+    doc: ds
+    section: 4.7.3 Interrupt pin
+    page: 27
+    driver: "`Config::int_pin_enable`, `IntMode`, `IntPolarity`, `IntDrive`"
+    docs: [configuration, hardware]
+  - topic: INT pad drive
+    doc: ds
+    section: 7.5 Register (0x14) Interrupt configuration register
+    page: 52
+    driver: "`Config::int_pad_drive`, `Validate()` (bit 3 with open drain only)"
+    docs: [configuration]
+  - topic: NVM data registers (the reset marker)
+    doc: ds
+    section: 4.8.1 NVM User Range; 7.25 Register (0x2C) NVM data (LSB); 7.26 Register (0x2D) NVM data (MSB)
+    page: 29
+    driver: "`EnsureInitialized()` (writes the marker), `ApplyConfig()` (reads it back)"
+    docs: [contract]
+  - topic: Interface selection (I2C, SPI)
+    doc: ds
+    section: 5.1 Protocol Selection; Table 16
+    page: 31
+    driver: "`SpiInterface` (the dummy read in `EnsureInitialized()`), `I2cInterface`"
+    docs: [porting, hardware]
+  - topic: SPI timing
+    doc: ds
+    section: 5.2.1 Interface timing; Table 18 SPI timings
+    page: 32
+    driver: "`spi::kMaxClockHz`, `spi::kMinCsHighNs`, `spi::kCsHoldNs`"
+    docs: [porting]
+  - topic: Read burst address increment
+    doc: ds
+    section: 5.4 Read burst address increment
+    page: 36
+    driver: "`ReadMeasurement()` (one 12-byte read), `ReadFifo()`"
+    docs: [architecture]
+  - topic: SPI protocol
+    doc: ds
+    section: 5.5 SPI Protocol; 5.5.2 SPI Write Operation; 5.5.3 SPI read operation; 5.5.4 SPI hybrid bursts
+    page: 36
+    driver: "`SpiInterface`, `SpiPort`, `spi::kSpiMode`"
+    docs: [porting]
+  - topic: I2C protocol and addresses
+    doc: ds
+    section: 5.6 I2C protocol; 5.6.1 I2C write operation; 5.6.2 I2C read operation
+    page: 38
+    driver: "`I2cInterface`, `I2cPort`, `i2c::kI2cAddress`, `i2c::kI2cAddressSdoHigh`, `i2c::kMaxClockHz`"
+    docs: [porting, hardware, troubleshooting]
+  - topic: Pins and connection diagrams
+    doc: ds
+    section: 6.1 Pin Out; 6.2 Connection Diagrams; Table 28
+    page: 46
+    driver: "(no control pin; CSB selects the interface)"
+    docs: [hardware, quickstart]
+  - topic: Register map
+    doc: ds
+    section: 7 Register Map
+    page: 50
+    driver: "`bmp581::reg`, `ReadRegister()`"
+    docs: [api-guide]
+  - topic: Identification and status
+    doc: ds
+    section: 7.1 Register (0x01) ASIC identification ID; 7.22 Register (0x28) Status register
+    page: 51
+    driver: "`kChipId`, `GetRevision()`, `GetLastStatus()`, `Error::DeviceIdMismatch`, `Error::DeviceFault`"
+    docs: [troubleshooting]
+  - topic: Interrupt status (clear-on-read)
+    doc: ds
+    section: 7.21 Register (0x27) Interrupt status register (clear-on-read)
+    page: 58
+    driver: "`GetLatchedInterrupts()`, `GetLastIntStatus()`"
+    docs: [contract]
+  - topic: OSR and ODR configuration
+    doc: ds
+    section: 7.33 Register (0x36) OSR configuration; 7.34 Register (0x37) ODR configuration; 7.35 OSR_EFF
+    page: 64
+    driver: "`OutputDataRate`, `OdrMilliHz()`, `PowerMode`, `CheckForReset()` (OSR_CONFIG to OSR_EFF, reserved bits)"
+    docs: [configuration, contract]

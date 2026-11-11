@@ -1,0 +1,152 @@
+---
+# The chip's hardware in one file: package, pins, the driver hook of each pin, the blocks inside, and the reference
+# circuits. `kokeb-docs figures` draws the pinout, the block diagram and the circuits from it, `kokeb-docs gen` writes
+# the pin and parts tables on docs/hardware.md, `kokeb-docs hardware --check` validates it and
+# `kokeb-docs hardware --kicad-netlist OUT --circuit i2c` exports a circuit for a schematic or PCB tool.
+# Schema: docs/chip-diagrams.md in kokeb-labs/ci-tools.
+#
+# Every fact cites the BMP581 datasheet (revision 1.13), listed in docs/datasheets.yml. Pin numbers and sides are
+# the top view of figure 23: pins 1 and 2 on top, 3 to 5 on the left, 6 and 7 at the bottom, 8 to 10 on the right.
+schema: 1
+chip: BMP581
+
+refs:
+  spec: {doc: ds, section: "2 Specification, Table 4 Electrical characteristics", page: 10}
+  blocks: {doc: ds, section: "4.1 Block diagram, Figure 1", page: 14}
+  power: {doc: ds, section: "4.2 Power management", page: 14}
+  intpin: {doc: ds, section: "4.7.3 Interrupt pin", page: 27}
+  select: {doc: ds, section: "5.1 Protocol Selection", page: 31}
+  spi: {doc: ds, section: "5.5 SPI Protocol, Table 22", page: 36}
+  i2c: {doc: ds, section: "5.6 I2C protocol", page: 38}
+  pinout: {doc: ds, section: "6.1 Pin Out, Figure 23", page: 46}
+  pins: {doc: ds, section: "6.1 Pin Out, Table 28 Pin description", page: 46}
+  conn: {doc: ds, section: "6.2 Connection Diagrams", page: 46}
+  spi4: {doc: ds, section: "6.2.2 SPI 4-wire, Figure 25", page: 47}
+  i2cconn: {doc: ds, section: "6.2.3 I2C, Figure 26", page: 48}
+  fifo: {doc: ds, section: "4.6 FIFO", page: 22}
+  nvm: {doc: ds, section: "4.8 NVM Programmability", page: 29}
+
+package:
+  type: LGA-10
+  pins: 10
+  layout: quad
+  sides: {left: [3, 4, 5], bottom: [6, 7], right: [8, 9, 10], top: [1, 2]}
+  ref: pinout
+
+hooks:
+  - {id: serial, call: "WriteRead() or Transfer()", kind: i2c, source: inc/bmp581_i2c_interface.hpp,
+     symbol: WriteRead}
+  - {id: spi, call: "Transfer()", kind: spi, source: inc/bmp581_spi_interface.hpp, symbol: Transfer}
+
+pins:
+  - {number: 1, name: VDDIO, type: power, domain: VDDIO,
+     function: "Digital interface supply, 1.08 V to 3.6 V; any order with VDD", ref: spec}
+  - {number: 2, name: SCK, type: bus, domain: VDDIO, function: "Serial clock: I2C SCL, or SPI SCK",
+     hook: serial, ref: pins}
+  - {number: 3, name: VSS, type: ground, domain: VSS, function: "Ground", ref: pins}
+  - {number: 4, name: SDI, type: bus, domain: VDDIO,
+     function: "Serial data: I2C SDA, or SPI MOSI (SDX); data in and out in 3-wire SPI", hook: serial, ref: pins}
+  - {number: 5, name: SDO, type: digital-io, domain: VDDIO,
+     function: "SPI MISO; on I2C the address LSB: VSS 0x46, VDDIO 0x47", hook: spi,
+     unused: "I2C: tie to VSS or VDDIO, never open", ref: i2c}
+  - {number: 6, name: CSB, type: digital-in, domain: VDDIO,
+     function: "SPI chip select, active low; held at VDDIO from power-up selects I2C", hook: spi,
+     unused: "I2C: tie to VDDIO", ref: select}
+  - {number: 7, name: INT, type: digital-out, domain: VDDIO,
+     function: "Interrupt output, push-pull or open drain, polarity set by INT_CONFIG", ref: intpin,
+     unused: "Tie to GND with INT_CONFIG.int_en = 0, the reset value"}
+  - {number: 8, name: VSS, type: ground, domain: VSS, function: "Ground", ref: pins}
+  - {number: 9, name: VSS, type: ground, domain: VSS, function: "Ground", ref: pins}
+  - {number: 10, name: VDD, type: power, domain: VDD,
+     function: "Analog supply, 1.71 V to 3.6 V; any order with VDDIO", ref: spec}
+
+block_diagram:
+  ref: blocks
+  blocks:
+    - {id: vref, label: Reference, detail: "voltage reference", at: [0, 0], tone: slate}
+    - {id: areg, label: Analog LDO, detail: "analog voltage regulator", at: [1, 0], tone: slate, pins: [VDD],
+       ref: power}
+    - {id: dreg, label: Digital LDO, detail: "digital voltage regulator", at: [2, 0], tone: slate}
+    - {id: sense, label: Sensor, detail: "pressure and temperature element", at: [0, 1], tone: amber}
+    - {id: afe, label: Front-end, detail: "analog front-end", at: [1, 1], tone: amber}
+    - {id: adc, label: A/D, at: [2, 1], tone: amber}
+    - {id: nvm, label: NVM, detail: "trimming, 6 user bytes", at: [0, 2], tone: slate, ref: nvm}
+    - {id: fifo, label: FIFO, detail: "32 frames", at: [1, 2], tone: violet, ref: fifo}
+    - {id: logic, label: Logic, detail: "compensation, IIR, registers", at: [2, 2], tone: violet}
+    - {id: osc, label: OSC, detail: "oscillator", at: [0, 3], tone: slate}
+    - {id: por, label: POR, detail: "power-on reset", at: [1, 3], tone: rose, pins: [VSS]}
+    - {id: iface, label: Interface, detail: "I2C, I3C, SPI", at: [2, 3], tone: blue, side: right,
+       pins: [SDI, SDO, SCK, CSB, INT, VDDIO], ref: select}
+  links:
+    - {from: sense, to: afe}
+    - {from: afe, to: adc}
+    - {from: adc, to: logic}
+    - {from: logic, to: iface, label: registers, both: true}
+    - {from: logic, to: fifo, label: frames}
+
+circuits:
+  - id: i2c
+    title: I2C connection
+    description: >-
+      Figure 26: the BMP581 on an I2C bus with separate VDDIO and VDD supplies, each with 100 nF, CSB tied to VDDIO
+      (I2C mode) and SDO tied to VDDIO: address 0x47, i2c::kI2cAddressSdoHigh (SDO to VSS gives 0x46). INT goes to an MCU input; leave it out and tie INT to GND when
+      it is not used. Figure 26 shows no pull-ups: the bus needs them (I2C specification).
+    ref: i2cconn
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: SCL, label: I2C SCL}
+          - {name: SDA, label: I2C SDA}
+          - {name: INT, label: GPIO in (INT)}
+          - VDD
+          - GND
+      - {id: R1, kind: resistor, value: 4.7 kΩ,
+         unverified: "figure 26 shows no pull-up; 4.7 kΩ to VDDIO suits 100 kHz and 400 kHz"}
+      - {id: R2, kind: resistor, value: 4.7 kΩ,
+         unverified: "figure 26 shows no pull-up; 4.7 kΩ to VDDIO suits 100 kHz and 400 kHz"}
+      - {id: C1, kind: capacitor, value: 100 nF, ref: i2cconn}
+      - {id: C2, kind: capacitor, value: 100 nF, ref: i2cconn}
+    nets:
+      - {name: "+VDDIO", kind: supply, nodes: [U1.VDDIO, U1.CSB, U1.SDO, U2.VDD, C1.1, R1.1, R2.1]}
+      - {name: "+VDD", kind: supply, nodes: [U1.VDD, C2.1]}
+      - {name: GND, kind: ground, nodes: [U1.VSS, U2.GND, C1.2, C2.2]}
+      - {name: SCL, nodes: [U1.SCK, U2.SCL, R1.2]}
+      - {name: SDA, nodes: [U1.SDI, U2.SDA, R2.2]}
+      - {name: INT, nodes: [U1.INT, U2.INT]}
+  - id: spi4
+    title: SPI 4-wire connection
+    description: >-
+      Figure 25: the BMP581 on a 4-wire SPI bus, mode 0 or 3, up to 12 MHz, with separate VDDIO and VDD supplies,
+      each with 100 nF. The MCU drives CSB high before the first frame; the driver's first frame selects SPI. R1
+      holds MISO high while the chip is in I2C mode, where SDO is an input: the frame that only selects SPI then
+      reads 0xFF, which no check of the driver takes for data.
+    ref: spi4
+    parts:
+      - {id: U1, kind: chip}
+      - id: U2
+        kind: mcu
+        label: MCU
+        pins:
+          - {name: SCK, label: SPI SCK}
+          - {name: MOSI, label: SPI MOSI}
+          - {name: MISO, label: SPI MISO}
+          - {name: CS, label: SPI CS}
+          - {name: INT, label: GPIO in (INT)}
+          - VDD
+          - GND
+      - {id: R1, kind: resistor, value: 47 kΩ,
+         unverified: "figure 25 shows no pull-up; recommended so the SPI selection frame (section 5.1) reads 0xFF"}
+      - {id: C1, kind: capacitor, value: 100 nF, ref: spi4}
+      - {id: C2, kind: capacitor, value: 100 nF, ref: spi4}
+    nets:
+      - {name: "+VDDIO", kind: supply, nodes: [U1.VDDIO, U2.VDD, C1.1, R1.1]}
+      - {name: "+VDD", kind: supply, nodes: [U1.VDD, C2.1]}
+      - {name: GND, kind: ground, nodes: [U1.VSS, U2.GND, C1.2, C2.2]}
+      - {name: SCK, nodes: [U1.SCK, U2.SCK]}
+      - {name: MOSI, nodes: [U1.SDI, U2.MOSI]}
+      - {name: MISO, nodes: [U1.SDO, U2.MISO, R1.2]}
+      - {name: CSB, nodes: [U1.CSB, U2.CS]}
+      - {name: INT, nodes: [U1.INT, U2.INT]}

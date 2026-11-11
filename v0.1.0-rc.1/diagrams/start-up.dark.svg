@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1127" viewBox="0 0 1200 1127" role="img" aria-labelledby="start-up-title start-up-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="start-up-title">What EnsureInitialized() does</title>
+<desc id="start-up-desc">Flow chart of EnsureInitialized(): check the configuration and the address, wait the power-up time, soft reset, check CHIP_ID, NVM ready and the reset flag, write and read back the configuration, enter the power mode; each failing step returns its error.</desc>
+<defs><marker id="fk-arrow-green-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#4ADE80"/></marker><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker><marker id="fk-arrow-rose-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FB7185"/></marker><marker id="fk-arrow-slate-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94A3B8"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1126" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">CONTRACT</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">What EnsureInitialized() does</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">A soft reset first, whatever an earlier run left. A failed call leaves the driver uninitialised, and the next call starts again at the top.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<path d="M676 172.3 L768 172.3" fill="none" stroke="#4ADE80" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-green-strong)"/>
+<path d="M352 210.8 L352 248.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 287.3 L768 287.3" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-slate-strong)"/>
+<path d="M352 325.8 L352 363.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 411.8 L768 411.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 459.8 L352 497.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 564.3 L768 564.3" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 630.8 L352 668.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 726.3 L768 726.3" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 783.8 L352 821.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 888.3 L768 888.3" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 954.8 L352 992.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="137.8" width="640" height="69" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="32" y="145.8" width="4" height="53" rx="2" fill="#2BB3A3"/>
+<rect x="772" y="137.8" width="396" height="69" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="772" y="145.8" width="4" height="53" rx="2" fill="#4ADE80"/>
+<rect x="32" y="252.8" width="640" height="69" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="260.8" width="4" height="53" rx="2" fill="#60A5FA"/>
+<rect x="772" y="252.8" width="396" height="69" rx="10" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<rect x="772" y="260.8" width="4" height="53" rx="2" fill="#94A3B8"/>
+<rect x="32" y="367.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="375.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="772" y="377.3" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="385.3" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="501.8" width="640" height="125" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="509.8" width="4" height="109" rx="2" fill="#60A5FA"/>
+<rect x="772" y="529.8" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="537.8" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="672.8" width="640" height="107" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="680.8" width="4" height="91" rx="2" fill="#60A5FA"/>
+<rect x="772" y="682.3" width="396" height="88" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="690.3" width="4" height="72" rx="2" fill="#FB7185"/>
+<rect x="32" y="825.8" width="640" height="125" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="833.8" width="4" height="109" rx="2" fill="#60A5FA"/>
+<rect x="772" y="834.8" width="396" height="107" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="842.8" width="4" height="91" rx="2" fill="#FB7185"/>
+<rect x="32" y="996.8" width="640" height="69" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="32" y="1004.8" width="4" height="53" rx="2" fill="#4ADE80"/>
+<text x="52" y="164.6" font-size="15" font-weight="700" fill="#A7F3E6">EnsureInitialized()</text>
+<text x="52" y="189.4" font-size="13" fill="#D2DAE4">started already?</text>
+<text x="792" y="164.6" font-size="15" font-weight="700" fill="#BBF7D0">Ok, or the start-up again</text>
+<text x="792" y="189.4" font-size="13" fill="#D2DAE4">the reset check: one read; a reset found: from step 1</text>
+<rect x="705.2" y="162.3" width="33.6" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="176.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">yes</text>
+<text x="52" y="279.6" font-size="15" font-weight="700" fill="#BFDBFE">Check the configuration and the address</text>
+<text x="52" y="304.4" font-size="13" fill="#D2DAE4">Validate(config); on I2C 0x46 or 0x47</text>
+<rect x="338.3" y="219.8" width="27.3" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="234.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">no</text>
+<text x="792" y="279.6" font-size="15" font-weight="700" fill="#E2E8F0">InvalidArgument</text>
+<text x="792" y="304.4" font-size="13" fill="#D2DAE4">nothing sent</text>
+<rect x="704.5" y="277.3" width="35" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="291.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">bad</text>
+<text x="52" y="394.6" font-size="15" font-weight="700" fill="#BFDBFE">1  Bus up, power-up time</text>
+<text x="52" y="419.4" font-size="13" fill="#D2DAE4">port.EnsureInitialized(); wait t_powup (2000 us)</text>
+<text x="52" y="438.3" font-size="13" fill="#D2DAE4">SPI: a dummy CHIP_ID read selects SPI</text>
+<text x="792" y="404.1" font-size="15" font-weight="700" fill="#FECDD3">Bus</text>
+<text x="792" y="428.9" font-size="13" fill="#D2DAE4">the port could not bring the bus up</text>
+<rect x="703.3" y="401.8" width="37.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="416.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">fails</text>
+<text x="52" y="528.5" font-size="15" font-weight="700" fill="#BFDBFE">2  Soft reset</text>
+<text x="52" y="553.4" font-size="13" fill="#D2DAE4">ODR_CONFIG = standby, deep standby off; t_standby</text>
+<text x="52" y="572.2" font-size="13" fill="#D2DAE4">CMD = 0xB6 (NACKed over I2C by design)</text>
+<text x="52" y="591.1" font-size="13" fill="#D2DAE4">wait t_soft_res (2000 us)</text>
+<text x="52" y="610" font-size="13" fill="#D2DAE4">SPI: select SPI again</text>
+<text x="792" y="556.5" font-size="15" font-weight="700" fill="#FECDD3">NoDevice or Bus</text>
+<text x="792" y="581.4" font-size="13" fill="#D2DAE4">an address NACK; an SPI frame that failed</text>
+<rect x="703.3" y="554.3" width="37.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="568.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">fails</text>
+<text x="52" y="699.5" font-size="15" font-weight="700" fill="#BFDBFE">3  Post-power-up checks (section 4.3.9)</text>
+<text x="52" y="724.4" font-size="13" fill="#D2DAE4">CHIP_ID = 0x50</text>
+<text x="52" y="743.2" font-size="13" fill="#D2DAE4">STATUS polled: nvm_rdy = 1, no NVM error</text>
+<text x="52" y="762.1" font-size="13" fill="#D2DAE4">INT_STATUS = 0x10, then 0x00</text>
+<text x="792" y="709" font-size="15" font-weight="700" fill="#FECDD3">DeviceIdMismatch, Timeout or DeviceFault</text>
+<text x="792" y="733.9" font-size="13" fill="#D2DAE4">another part, or no reset seen; NVM never ready; an</text>
+<text x="792" y="752.8" font-size="13" fill="#D2DAE4">NVM error</text>
+<rect x="703.3" y="716.3" width="37.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="730.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">fails</text>
+<text x="52" y="852.5" font-size="15" font-weight="700" fill="#BFDBFE">4  Configuration, in standby</text>
+<text x="52" y="877.4" font-size="13" fill="#D2DAE4">standby, deep standby off; the NVM_DATA marker once</text>
+<text x="52" y="896.2" font-size="13" fill="#D2DAE4">INT_SOURCE = 0, INT_STATUS read, 12 one-byte writes</text>
+<text x="52" y="915.1" font-size="13" fill="#D2DAE4">read all and the marker back, INT_STATUS again</text>
+<text x="52" y="934" font-size="13" fill="#D2DAE4">the power mode, read back with OSR_EFF</text>
+<text x="792" y="861.5" font-size="15" font-weight="700" fill="#FECDD3">WriteMismatch, ConfigRejected or</text>
+<text x="792" y="881" font-size="15" font-weight="700" fill="#FECDD3">DeviceReset</text>
+<text x="792" y="905.9" font-size="13" fill="#D2DAE4">a write not kept; ODR too fast for the OSR; a reset</text>
+<text x="792" y="924.8" font-size="13" fill="#D2DAE4">meanwhile</text>
+<rect x="703.3" y="878.3" width="37.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="892.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">fails</text>
+<text x="52" y="1023.5" font-size="15" font-weight="700" fill="#BBF7D0">Started: Ok</text>
+<text x="52" y="1048.4" font-size="13" fill="#D2DAE4">the chip runs the configuration, pressure enabled</text>
+<rect x="318.6" y="963.8" width="66.9" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="978.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">all match</text>
+<rect x="32" y="1081.2" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="54" y="1092.8" font-size="12.5" fill="#9AA6B5">your call</text>
+<rect x="131.4" y="1081.2" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="153.4" y="1092.8" font-size="12.5" fill="#9AA6B5">driver steps</text>
+<rect x="251.7" y="1081.2" width="14" height="14" rx="4" fill="#1B232E" stroke="#94A3B8" stroke-width="1.4"/>
+<text x="273.7" y="1092.8" font-size="12.5" fill="#9AA6B5">fails, nothing sent</text>
+<rect x="408.7" y="1081.2" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="430.7" y="1092.8" font-size="12.5" fill="#9AA6B5">fails</text>
+<rect x="480.5" y="1081.2" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="502.5" y="1092.8" font-size="12.5" fill="#9AA6B5">Ok</text>
+<path d="M543.9 1087.4L573.9 1087.4" fill="none" stroke="#6C7889" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="587.9" y="1092.8" font-size="12.5" fill="#9AA6B5">next step</text>
+</svg>

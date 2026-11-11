@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1072" viewBox="0 0 1200 1072" role="img" aria-labelledby="measurement-title measurement-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="measurement-title">From a conversion to a value</title>
+<desc id="measurement-desc">Flow chart: MeasureOnce() or WaitDataReady() leads to one 12-byte read of TEMP_DATA to STATUS, then the checks: reserved registers and stuck lines, the reset flag, the reset value, the measurement range; each failing check returns its error, and only a frame that passes them all is a value.</desc>
+<defs><marker id="fk-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker><marker id="fk-arrow-rose-strong" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FB7185"/></marker></defs>
+<rect x="0.5" y="0.5" width="1199" height="1071" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#F8D27A">CONTRACT</text>
+<text x="32" y="77.3" font-size="26" font-weight="700" fill="#E8EDF3">From a conversion to a value</text>
+<text x="32" y="103.8" font-size="15" fill="#9AA6B5">No all-0x00 or all-0xFF frame, no reset value and nothing out of range is ever a value.</text>
+<rect x="32" y="119.8" width="1136" height="1" fill="#252F3C"/>
+<path d="M306 248.8 L306 286.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M894 229.8 L894 260.8 Q894 268.8 886 268.8 L640 268.8 Q632 268.8 632 276.8 L632 286.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M352 382.8 L352 420.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 468.8 L768 468.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 516.8 L352 554.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 602.8 L768 602.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 650.8 L352 688.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 736.8 L768 736.8" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 784.8 L352 822.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<path d="M676 861.3 L768 861.3" fill="none" stroke="#FB7185" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rose-strong)"/>
+<path d="M352 899.8 L352 937.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#fk-arrow-rail)"/>
+<rect x="32" y="137.8" width="548" height="107" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="32" y="145.8" width="4" height="91" rx="2" fill="#2BB3A3"/>
+<rect x="620" y="137.8" width="548" height="88" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="620" y="145.8" width="4" height="72" rx="2" fill="#2BB3A3"/>
+<rect x="32" y="290.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="298.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="32" y="424.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="432.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="772" y="434.3" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="442.3" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="558.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="566.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="772" y="568.3" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="576.3" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="692.8" width="640" height="88" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="700.8" width="4" height="72" rx="2" fill="#60A5FA"/>
+<rect x="772" y="702.3" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="710.3" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="826.8" width="640" height="69" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="834.8" width="4" height="53" rx="2" fill="#60A5FA"/>
+<rect x="772" y="826.8" width="396" height="69" rx="10" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<rect x="772" y="834.8" width="4" height="53" rx="2" fill="#FB7185"/>
+<rect x="32" y="941.8" width="640" height="69" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="32" y="949.8" width="4" height="53" rx="2" fill="#4ADE80"/>
+<text x="52" y="164.6" font-size="15" font-weight="700" fill="#A7F3E6">MeasureOnce()</text>
+<text x="52" y="189.4" font-size="13" fill="#D2DAE4">reset check (INT_STATUS, OSR_CONFIG); ODR_CONFIG = forced, polled until</text>
+<text x="52" y="208.2" font-size="13" fill="#D2DAE4">it shows</text>
+<text x="52" y="227.1" font-size="13" fill="#D2DAE4">wait, then poll until standby</text>
+<text x="640" y="164.6" font-size="15" font-weight="700" fill="#A7F3E6">WaitDataReady()  ReadMeasurement()</text>
+<text x="640" y="189.4" font-size="13" fill="#D2DAE4">normal or continuous mode</text>
+<text x="640" y="208.2" font-size="13" fill="#D2DAE4">INT_STATUS polled until drdy</text>
+<text x="52" y="317.6" font-size="15" font-weight="700" fill="#BFDBFE">One 12-byte read: TEMP_DATA to STATUS</text>
+<text x="52" y="342.4" font-size="13" fill="#D2DAE4">temperature, pressure, 4 reserved bytes, INT_STATUS, STATUS</text>
+<text x="52" y="361.2" font-size="13" fill="#D2DAE4">one conversion: data shadowing (section 4.5.1)</text>
+<rect x="257.2" y="257.8" width="97.7" height="20" rx="10" fill="#0E131A"/>
+<text x="306" y="272.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">standby again</text>
+<rect x="735.1" y="258.8" width="76.8" height="20" rx="10" fill="#0E131A"/>
+<text x="773.5" y="273.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">data ready</text>
+<text x="52" y="451.6" font-size="15" font-weight="700" fill="#BFDBFE">Can the chip send this frame?</text>
+<text x="52" y="476.4" font-size="13" fill="#D2DAE4">reserved registers 0x00, reserved bits 0</text>
+<text x="52" y="495.3" font-size="13" fill="#D2DAE4">not all 0x00 (all 0xFF fails the reserved bytes)</text>
+<text x="792" y="461.1" font-size="15" font-weight="700" fill="#FECDD3">InvalidReply</text>
+<text x="792" y="485.9" font-size="13" fill="#D2DAE4">a stuck or floating line; the reset check runs</text>
+<rect x="708.3" y="458.8" width="27.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="473.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">no</text>
+<text x="52" y="585.5" font-size="15" font-weight="700" fill="#BFDBFE">Did the chip reset?</text>
+<text x="52" y="610.4" font-size="13" fill="#D2DAE4">INT_STATUS to the latch; por: OSR_CONFIG read twice</text>
+<text x="52" y="629.2" font-size="13" fill="#D2DAE4">press_en = 0 is the reset</text>
+<rect x="335.2" y="525.8" width="33.6" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="540.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">yes</text>
+<text x="792" y="595" font-size="15" font-weight="700" fill="#FECDD3">DeviceReset</text>
+<text x="792" y="619.9" font-size="13" fill="#D2DAE4">the driver is uninitialised; nothing written</text>
+<rect x="700.5" y="592.8" width="43" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="607.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">reset</text>
+<text x="52" y="719.5" font-size="15" font-weight="700" fill="#BFDBFE">Is it a measurement?</text>
+<text x="52" y="744.4" font-size="13" fill="#D2DAE4">not the reset value 0x7F7F7F</text>
+<text x="52" y="763.2" font-size="13" fill="#D2DAE4">the reset check runs on it too</text>
+<rect x="338.3" y="659.8" width="27.3" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="674.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">no</text>
+<text x="792" y="729" font-size="15" font-weight="700" fill="#FECDD3">NoData</text>
+<text x="792" y="753.9" font-size="13" fill="#D2DAE4">no conversion since the reset</text>
+<rect x="708.3" y="726.8" width="27.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="741.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">no</text>
+<text x="52" y="853.5" font-size="15" font-weight="700" fill="#BFDBFE">In the measurement range?</text>
+<text x="52" y="878.4" font-size="13" fill="#D2DAE4">30000 to 125000 Pa, -40 to 85 °C (tables 1, 2)</text>
+<rect x="335.2" y="793.8" width="33.6" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="808.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">yes</text>
+<text x="792" y="853.5" font-size="15" font-weight="700" fill="#FECDD3">OutOfRange</text>
+<text x="792" y="878.4" font-size="13" fill="#D2DAE4">never clamped</text>
+<rect x="708.3" y="851.3" width="27.3" height="20" rx="10" fill="#0E131A"/>
+<text x="722" y="865.6" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">no</text>
+<text x="52" y="968.5" font-size="15" font-weight="700" fill="#BBF7D0">Ok: a Measurement</text>
+<text x="52" y="993.4" font-size="13" fill="#D2DAE4">pressure_raw / 64 = Pa, temperature_raw / 65536 = °C, exact</text>
+<rect x="335.2" y="908.8" width="33.6" height="20" rx="10" fill="#0E131A"/>
+<text x="352" y="923.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">yes</text>
+<rect x="32" y="1026.2" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="54" y="1037.8" font-size="12.5" fill="#9AA6B5">your call</text>
+<rect x="131.4" y="1026.2" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="153.4" y="1037.8" font-size="12.5" fill="#9AA6B5">driver steps</text>
+<rect x="251.7" y="1026.2" width="14" height="14" rx="4" fill="#321820" stroke="#FB7185" stroke-width="1.4"/>
+<text x="273.7" y="1037.8" font-size="12.5" fill="#9AA6B5">fails</text>
+<rect x="323.5" y="1026.2" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="345.5" y="1037.8" font-size="12.5" fill="#9AA6B5">Ok</text>
+<path d="M386.9 1032.4L416.9 1032.4" fill="none" stroke="#6C7889" stroke-width="1.6" marker-end="url(#fk-arrow-rail)"/>
+<text x="430.9" y="1037.8" font-size="12.5" fill="#9AA6B5">next step</text>
+</svg>

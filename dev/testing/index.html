@@ -1221,73 +1221,73 @@ flags, <code>-fno-exceptions -fno-rtti</code>, and warnings as errors, on GCC an
 </thead>
 <tbody>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_bmp581.cpp"><code>tests/test_bmp581.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_bmp581.cpp"><code>tests/test_bmp581.cpp</code></a></td>
 <td>Lifecycle, configuration (every field where section 7 puts it), power modes, forced and normal measurements, exact conversions, the range checks, the FIFO, interrupts, raw access, <code>Deinitialize()</code>, <code>Validate()</code> against table 7</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_reset.cpp"><code>tests/test_reset.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_reset.cpp"><code>tests/test_reset.cpp</code></a></td>
 <td>A power-on reset found by every call, confirmed by a second read, never written over; a reset at every transfer of <code>ApplyConfig()</code>; pending checks; standby and <code>Deinitialize()</code> never refused</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_bus_faults.cpp"><code>tests/test_bus_faults.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_bus_faults.cpp"><code>tests/test_bus_faults.cpp</code></a></td>
 <td>Stuck, floating, looped-back and deaf lines at start-up and after; NACKs; lost acknowledgements; dropped and corrupt writes and reads at every transfer; the configuration left in doubt</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_timing.cpp"><code>tests/test_timing.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_timing.cpp"><code>tests/test_timing.cpp</code></a></td>
 <td>The open readings, each under every value: an NVM download that overwrites the marker (no false reset, a real one still found); the second data read of <code>Verify::ReadBack</code>; odr_is_valid 0, 600 and 3000 us late; a forced mode shown late; deep standby losing writes or not, over every flow; the FIFO flush wait; all 256 fills of the SPI selection frame; a reset during <code>ApplyConfig()</code> with its por read disturbed; standby after a failed first start</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/fuzz/fuzz_bmp581.cpp"><code>tests/fuzz/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/fuzz/fuzz_bmp581.cpp"><code>tests/fuzz/</code></a></td>
 <td>The fuzz target; CTest replays its corpus (<code>bmp581_fuzz_bmp581_corpus</code>), see below</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_errors.cpp"><code>tests/test_errors.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_errors.cpp"><code>tests/test_errors.cpp</code></a></td>
 <td>The base <code>Error</code> values are 0 to 9; every chip-specific value (16 and up) is returned by some call</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_version.cpp"><code>tests/test_version.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_version.cpp"><code>tests/test_version.cpp</code></a></td>
 <td>The version getters follow the generated header (also against a 9.8.7 probe)</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_kconfig.cpp"><code>tests/test_kconfig.cpp</code></a></td>
 <td><code>KconfigDefaults()</code> with and without <code>CONFIG_</code> values</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/compile_fail/port_without_delay.cpp"><code>tests/compile_fail/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/compile_fail/port_without_delay.cpp"><code>tests/compile_fail/</code></a></td>
 <td>Code that must not compile, each for its <code>EXPECT:</code> diagnostic: a port without <code>DelayUs()</code>, a <code>DelayUs(uint16_t)</code>, a misdeclared <code>GetLastFailure()</code>, an I2C or SPI hook with a narrowed parameter or without <code>noexcept</code>, a port of both buses, an invalid <code>CheckedConfig</code>, a class that is not a port</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/mock_bmp581.hpp"><code>tests/mock_bmp581.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/mock_bmp581.hpp"><code>tests/mock_bmp581.hpp</code></a></td>
 <td>The register model, with its own register map and a virtual clock; the I2C and SPI framing and the fault injection are in <code>mock_bmp581_bus.hpp</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_model.cpp"><code>tests/test_model.cpp</code></a></td>
 <td>The model's register map, reset values, timing and tables against the driver's, with <code>static_assert</code>, and the model's own behaviour</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/check_version_copy.cmake"><code>tests/check_version_copy.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/check_version_copy.cmake"><code>tests/check_version_copy.cmake</code></a></td>
 <td><code>_config/Doxyfile</code> carries the CMake version</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/examples/host/README.md"><code>examples/host/</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/examples/host/README.md"><code>examples/host/</code></a></td>
 <td>The host example, built with the test flags and run (<code>bmp581_host_example</code>)</td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
-<td>Installs into a scratch prefix and builds <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/install_consumer/CMakeLists.txt"><code>tests/install_consumer/</code></a> with <code>find_package(bmp581)</code></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/check_install.cmake"><code>tests/check_install.cmake</code></a></td>
+<td>Installs into a scratch prefix and builds <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/install_consumer/CMakeLists.txt"><code>tests/install_consumer/</code></a> with <code>find_package(bmp581)</code></td>
 </tr>
 <tr>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/check_doxygen.cmake"><code>tests/check_doxygen.cmake</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/check_doxygen.cmake"><code>tests/check_doxygen.cmake</code></a></td>
 <td>Doxygen with <code>_config/Doxyfile</code> and warnings as errors, when <code>doxygen</code> is installed</td>
 </tr>
 </tbody>
 </table>
 <h3 id="the-model-stands-alone">The model stands alone<a class="headerlink" href="#the-model-stands-alone" title="Permanent link">&para;</a></h3>
-<p><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/mock_bmp581.hpp"><code>tests/mock_bmp581.hpp</code></a> is written from the datasheet, not from the driver: it does
+<p><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/mock_bmp581.hpp"><code>tests/mock_bmp581.hpp</code></a> is written from the datasheet, not from the driver: it does
 not include <code>bmp581_registers.hpp</code> or <code>bmp581_types.hpp</code>. Its register map, field masks, reset values, timing and
 tables are its own (namespace <code>bmp581_test::chip</code>, each with the datasheet section), so a wrong constant in the
 driver cannot hide behind the same wrong constant in the model (handbook KB-TST-030).
-<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/test_model.cpp"><code>tests/test_model.cpp</code></a> compares the two at compile time:</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/test_model.cpp"><code>tests/test_model.cpp</code></a> compares the two at compile time:</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Register map (section 7).</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">static_assert</span><span class="p">(</span><span class="n">chip</span><span class="o">::</span><span class="n">kChipId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kChipId</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">kRevId</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kRevId</span><span class="w"> </span><span class="o">&amp;&amp;</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">              </span><span class="n">chip</span><span class="o">::</span><span class="n">kChipStatus</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kChipStatus</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">chip</span><span class="o">::</span><span class="n">kDriveConfig</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">reg</span><span class="o">::</span><span class="n">kDriveConfig</span><span class="p">);</span>
@@ -1356,7 +1356,7 @@ dropped write, a corrupt byte in any read, a line stuck low, floating high, loop
 transfer on.</p>
 <h2 id="fuzz-tests">Fuzz tests<a class="headerlink" href="#fuzz-tests" title="Permanent link">&para;</a></h2>
 <p>Everything the driver reads comes from the chip over the bus, so the data read is what a noisy cable, a wrong part
-or a broken chip controls. <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/fuzz/fuzz_bmp581.cpp"><code>tests/fuzz/fuzz_bmp581.cpp</code></a> lets libFuzzer choose the
+or a broken chip controls. <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/fuzz/fuzz_bmp581.cpp"><code>tests/fuzz/fuzz_bmp581.cpp</code></a> lets libFuzzer choose the
 bus, a configuration, then up to 64 driver calls, and on every bus transfer what the bus does: pass it to the
 model, fail it, lose its acknowledgement, flip bits of the data read or drop an acknowledged write, replace the
 data read by a stuck or floating line, reset the chip just before it, or let 2 ms pass first. The chip may answer
@@ -1388,7 +1388,7 @@ promises and aborts, naming the line, when one breaks:</p>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>./build-fuzz/tests/fuzz/fuzz_bmp581<span class="w"> </span>-max_total_time<span class="o">=</span><span class="m">300</span><span class="w"> </span>-max_len<span class="o">=</span><span class="m">512</span><span class="w"> </span>tests/fuzz/corpus/fuzz_bmp581
 </span></code></pre></div>
 <p>The same file also builds without libFuzzer as <code>fuzz_replay_fuzz_bmp581</code>, and CTest replays every input in
-<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/tree/575deb50709d4bc4be10d412e393019fedf67f44/tests/fuzz/corpus/fuzz_bmp581"><code>tests/fuzz/corpus/fuzz_bmp581/</code></a> on GCC and Clang
+<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/tree/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/fuzz/corpus/fuzz_bmp581"><code>tests/fuzz/corpus/fuzz_bmp581/</code></a> on GCC and Clang
 (<code>bmp581_fuzz_bmp581_corpus</code>): the seeds, and every input that ever broke a promise, so a fixed bug stays fixed:
 <code>check-overwrote-data</code> (the reset check read into the buffer a measurement was still decoded from),
 <code>invalid-argument-after-check</code> (an argument refused after a pending check had sent a read),
@@ -1407,7 +1407,7 @@ fuzzes for 120 s on every pull request, from the seeds plus a corpus it keeps be
 <h2 id="quality-gates">Quality gates<a class="headerlink" href="#quality-gates" title="Permanent link">&para;</a></h2>
 <p>The <code>Host quality</code> job measures the library code, <code>inc/</code> and <code>src/</code> only (tests and examples are left out), and
 fails when a value is over the limits of this repository's assurance level, <code>high</code> (set in
-<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
+<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/.kokeb/handbook.yml"><code>.kokeb/handbook.yml</code></a>, defined by the handbook's ADR-0020):</p>
 <table>
 <thead>
 <tr>
@@ -1473,10 +1473,10 @@ fails when a value is over the limits of this repository's assurance level, <cod
 </span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build-san<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="w"> </span>--test-dir<span class="w"> </span>build-san<span class="w"> </span>--output-on-failure
 </span></code></pre></div>
 <p>The fuzz gate runs locally as shown in <a href="#fuzz-tests">Fuzz tests</a>.</p>
-<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
+<p>clang-tidy 20 (<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/_config/.clang-tidy"><code>_config/.clang-tidy</code></a>: bugprone, CERT, clang-analyzer,
 cppcoreguidelines, modernize, performance, portability and readability, each disabled check with its reason) and
 cppcheck (strict) run in the <code>C++ lint</code> and <code>Repository checks</code> jobs and fail on any finding.</p>
-<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
+<p>The <code>MISRA</code> job (<a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/.github/workflows/ci-misra.yml"><code>ci-misra.yml</code></a>) runs the shared <code>ru-misra</code> workflow of
 ci-tools at level <code>high</code>: it traces a host build and the Cortex-M build (<code>bmp581_optimised_build</code>) of every
 translation unit, checks them against MISRA C++:2023 and the handbook's C++20 profile (the CodeQL coding-standards
 and profile packs, plus the validated clang-tidy and cppcheck checks), and reports each finding against the
@@ -1485,12 +1485,12 @@ its deviation on the line before it (<code>// codeql::misra_deviation_next_line(
 of <code>inc/bmp581.hpp</code>). Until the repository is public the job runs with <code>open_source_prerelease: true</code>, the
 declaration that the code is released under the licence in <code>LICENSE</code> and is to be published.</p>
 <h2 id="documentation-snippets">Documentation snippets<a class="headerlink" href="#documentation-snippets" title="Permanent link">&para;</a></h2>
-<p>Every C++ block on this site is included from <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/tests/docs/my_port.hpp"><code>tests/docs/</code></a>, which the host build
+<p>Every C++ block on this site is included from <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/tests/docs/my_port.hpp"><code>tests/docs/</code></a>, which the host build
 compiles (target <code>bmp581_doc_snippets</code>) with the driver instantiated over the documented port. A change to
 the API that breaks a page breaks the build first. The README's example is a generated copy of the same file;
 <code>kokeb-docs check</code> fails when it drifts.</p>
 <h2 id="ci-workflows">CI workflows<a class="headerlink" href="#ci-workflows" title="Permanent link">&para;</a></h2>
-<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
+<p>Everything runs from <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/.github/workflows/ci.yml"><code>ci.yml</code></a>, which calls one workflow file per check and ends in
 the <code>CI gate</code> job, the single required check (<code>CI gate / gate</code>).</p>
 <table>
 <thead>

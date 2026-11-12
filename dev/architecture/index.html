@@ -1078,7 +1078,7 @@
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom, each arrow is a call. Your application calls one object, whose public calls are listed from the umbrella header in inc/. The core turns each call into register reads and writes and hands them to the port contract (the CRTP base in inc/*_interface.hpp), which forwards them, at compile time, to the hooks of the port class you write; your port moves the bytes on the bus. The notes on the right say which layers stay the same on every MCU and which one you write. A library without a port contract has only the first two layers.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581.hpp"><code>inc/bmp581.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a> <code>I2cInterface</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a> <code>SpiInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581.hpp"><code>inc/bmp581.hpp</code></a> <code>public calls</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a> <code>I2cInterface</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a> <code>SpiInterface</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/docs/diagrams/figures/driver-layers.py"><code>docs/diagrams/figures/driver-layers.py</code></a>.</p>
 </details>
 <h2 id="layers">Layers<a class="headerlink" href="#layers" title="Permanent link">&para;</a></h2>
 <table>
@@ -1092,17 +1092,17 @@
 <tbody>
 <tr>
 <td>Core</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581.hpp"><code>inc/bmp581.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/src/bmp581.ipp"><code>src/bmp581.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581.hpp"><code>inc/bmp581.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/src/bmp581.ipp"><code>src/bmp581.ipp</code></a></td>
 <td>Lifecycle, configuration, power modes, measurements, the FIFO, the reset check, errors</td>
 </tr>
 <tr>
 <td>Types and registers</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_types.hpp"><code>inc/bmp581_types.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_types.hpp"><code>inc/bmp581_types.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a></td>
 <td><code>Error</code>, <code>Result&lt;T&gt;</code>, <code>Config</code> and presets, timing and range constants, the conversions; the register map</td>
 </tr>
 <tr>
 <td>Port contracts</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a></td>
 <td>Each bus's CRTP base, its concept (<code>I2cPort</code>, <code>SpiPort</code>), its bus requirements and its register framing</td>
 </tr>
 <tr>
@@ -1112,7 +1112,7 @@
 </tr>
 <tr>
 <td>Kconfig layer</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_kconfig.hpp"><code>inc/bmp581_kconfig.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_kconfig.hpp"><code>inc/bmp581_kconfig.hpp</code></a></td>
 <td>Optional: a <code>Config</code> from ESP-IDF menuconfig</td>
 </tr>
 </tbody>
@@ -1169,7 +1169,7 @@ SPI would need an address per byte in a burst anyway (figure 9).</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Two entry points at the top. MeasureOnce() runs the reset check (INT_STATUS, then OSR_CONFIG to OSR_EFF in one read), writes ODR_CONFIG with pwr_mode = forced, polls it until it shows forced (at most t_startup) to prove the measurement started, waits the typical conversion time less 5 percent, then polls the same registers until the chip is back in standby, at most the datasheet maximum. In normal or continuous mode, WaitDataReady() polls INT_STATUS until drdy. Both end in the same read: one 12-byte burst of TEMP_DATA to STATUS, so temperature and pressure come from one conversion (data shadowing). The checks below run in order, and each failure has its error card on the right: the reserved registers must read 0x00 and the frame must not be all 0x00 (a stuck or floating line); INT_STATUS goes to the latch, and a por in it runs the reset check; the reset value 0x7F7F7F is no measurement and runs the reset check too; the values must lie in the measurement range. Only then is the value returned, in 1/64 Pa and 1/65536 degrees Celsius.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/src/bmp581.ipp"><code>src/bmp581.ipp</code></a> <code>MeasureOnce, waitForcedShown, WaitDataReady, readData, settle</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a> <code>kDataReset</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_types.hpp"><code>inc/bmp581_types.hpp</code></a> <code>kPressureMinPa, kPressureMaxPa, kTemperatureMinC, kTemperatureMaxC</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/docs/diagrams/figures/measurement.py"><code>docs/diagrams/figures/measurement.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/src/bmp581.ipp"><code>src/bmp581.ipp</code></a> <code>MeasureOnce, waitForcedShown, WaitDataReady, readData, settle</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a> <code>kDataReset</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_types.hpp"><code>inc/bmp581_types.hpp</code></a> <code>kPressureMinPa, kPressureMaxPa, kTemperatureMinC, kTemperatureMaxC</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/docs/diagrams/figures/measurement.py"><code>docs/diagrams/figures/measurement.py</code></a>.</p>
 </details>
 <pre class="mermaid"><code>sequenceDiagram
     participant App as Your code
@@ -1194,7 +1194,7 @@ SPI would need an address per byte in a burst anyway (figure 9).</p>
 <details class="kb-figure-desc">
 <summary>Figure description and sources</summary>
 <p>Top to bottom on the left, the steps of the first EnsureInitialized() call; once it has succeeded a later call runs the reset check (one 3-byte read of OSR_CONFIG to OSR_EFF) and returns Ok, or starts again at the top when the chip reset. The configuration and the I2C address are checked before any I/O. Step 1 waits the power-up time and, on SPI, sends the dummy read that changes the chip from I2C to SPI. Step 2 is the soft reset: standby with deep standby off first (the datasheet does not say that deep standby takes CMD), then CMD = 0xB6, which the chip does not acknowledge over I2C, then the soft reset time, and on SPI the selection read again, since a reset returns the interface to I2C. Step 3 is the datasheet's post-power-up check: CHIP_ID, STATUS polled until the NVM is ready with no error, and INT_STATUS, which must read 0x10 (the reset happened) and then 0x00 (the read cleared it), a check no stuck, floating or looped-back line can pass. Step 4 leaves the deep standby the reset left the chip in (standby with deep standby off, then t_standby), writes the marker to NVM_DATA once, writes the configuration one register per transfer with ODR_CONFIG last, reads all of it and the marker back, reads INT_STATUS once more, and enters the configured power mode, read back too. Each card on the right is the error a step returns; after any failure the driver stays uninitialised and the next call starts at the top.</p>
-<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/src/bmp581.ipp"><code>src/bmp581.ipp</code></a> <code>EnsureInitialized, initialize, resetChip, identify, waitNvmReady, checkResetFlags, configure</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a> <code>kChipIdValue, kIntStatusAfterReset, kCmdSoftReset</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_types.hpp"><code>inc/bmp581_types.hpp</code></a> <code>kPowerUpUs, kSoftResetUs</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/docs/diagrams/figures/start-up.py"><code>docs/diagrams/figures/start-up.py</code></a>.</p>
+<p>Drawn from: <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/src/bmp581.ipp"><code>src/bmp581.ipp</code></a> <code>EnsureInitialized, initialize, resetChip, identify, waitNvmReady, checkResetFlags, configure</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a> <code>kChipIdValue, kIntStatusAfterReset, kCmdSoftReset</code>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_types.hpp"><code>inc/bmp581_types.hpp</code></a> <code>kPowerUpUs, kSoftResetUs</code>; figure module <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/docs/diagrams/figures/start-up.py"><code>docs/diagrams/figures/start-up.py</code></a>.</p>
 </details>
 <h2 id="design-choices">Design choices<a class="headerlink" href="#design-choices" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1222,19 +1222,19 @@ SPI would need an address per byte in a burst anyway (figure 9).</p>
 <tbody>
 <tr>
 <td>The public API</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581.hpp"><code>inc/bmp581.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581.hpp"><code>inc/bmp581.hpp</code></a></td>
 </tr>
 <tr>
 <td>How a call is implemented</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/src/bmp581.ipp"><code>src/bmp581.ipp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/src/bmp581.ipp"><code>src/bmp581.ipp</code></a></td>
 </tr>
 <tr>
 <td>Register addresses and bits</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_registers.hpp"><code>inc/bmp581_registers.hpp</code></a></td>
 </tr>
 <tr>
 <td>The port contracts</td>
-<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/575deb50709d4bc4be10d412e393019fedf67f44/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a></td>
+<td><a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>, <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/2c82659cd7fdfefb0920b1820d0063a1c6a3c5bf/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a></td>
 </tr>
 </tbody>
 </table>

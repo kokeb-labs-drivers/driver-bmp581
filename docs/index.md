@@ -70,7 +70,8 @@ and linearises and compensates both on the chip (1 Basic Description, [p.
 - Vertical speed indication
 - Altitude control of drones and flying toys
 
-Uses named by the datasheet (1 Basic Description, [p. 2](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=2)).
+Uses named by the datasheet (1 Basic Description, [p.
+2](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=2)).
 <!-- /generated -->
 
 ## Inside the chip

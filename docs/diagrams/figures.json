@@ -80,7 +80,7 @@
   "chip-wiring-i2c": {
     "title": "Wiring: I2C connection",
     "alt": "Wiring of the BMP581 for the I2C connection: MCU I2C SCL to SCK (WriteRead() or Transfer()); MCU I2C SDA to SDI (WriteRead() or Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support parts are listed under the drawing.",
-    "description": "The MCU on the left, the BMP581 in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "description": "The MCU on the left, the BMP581 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
     "profile": "overview",
     "width": 1200,
     "source": "docs/hardware.yml",
@@ -93,7 +93,7 @@
   "chip-wiring-spi4": {
     "title": "Wiring: SPI 4-wire connection",
     "alt": "Wiring of the BMP581 for the SPI 4-wire connection: MCU SPI SCK to SCK (WriteRead() or Transfer()); MCU SPI MOSI to SDI (WriteRead() or Transfer()); MCU SPI MISO to SDO (Transfer()); MCU SPI CS to CSB (Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support parts are listed under the drawing.",
-    "description": "The MCU on the left, the BMP581 in the middle. Each wire is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hook that uses it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
+    "description": "The MCU on the left, the BMP581 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.",
     "profile": "overview",
     "width": 1200,
     "source": "docs/hardware.yml",

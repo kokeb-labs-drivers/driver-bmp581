@@ -61,7 +61,8 @@ The site at <https://kokeb-labs-drivers.github.io/driver-bmp581/> opens when the
 - Vertical speed indication
 - Altitude control of drones and flying toys
 
-Uses named by the datasheet (1 Basic Description, [p. 2](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=2)).
+Uses named by the datasheet (1 Basic Description, [p.
+2](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=2)).
 <!-- /generated -->
 
 ## Inside the chip
@@ -105,8 +106,9 @@ Uses named by the datasheet (1 Basic Description, [p. 2](https://www.bosch-senso
 | 1.8 V to 3.3 V | VDD (10) | 100 nF to GND close to the pin |
 | GND | VSS (3, 8, 9) | INT (7) to GND when unused |
 
-The figure follows the datasheet's I2C diagram, SDO to VDDIO for address `0x47` (`i2c::kI2cAddressSdoHigh`); the
-table ties SDO to GND for the default `0x46`. On SPI: SCK, SDI (MOSI), SDO (MISO) and CSB to the MCU's SPI pins ([Hardware](docs/hardware.md#spi)).
+The figure and the table tie SDO to GND for the default address `0x46` (`i2c::kI2cAddress`); the datasheet's I2C
+diagram (Figure 26) ties it to VDDIO, which gives `0x47` (`i2c::kI2cAddressSdoHigh`). On SPI: SCK, SDI (MOSI), SDO
+(MISO) and CSB to the MCU's SPI pins ([Hardware](docs/hardware.md#spi)).
 
 <!-- generated: chip-card -->
 | | | Datasheet |

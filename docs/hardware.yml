@@ -174,9 +174,10 @@ circuits:
   - id: i2c
     title: I2C connection
     description: >-
-      Figure 26: the BMP581 on an I2C bus with separate VDDIO and VDD supplies, each with 100 nF, CSB tied to VDDIO
-      (I2C mode) and SDO tied to VDDIO: address 0x47, i2c::kI2cAddressSdoHigh (SDO to VSS gives 0x46). INT goes to an MCU input; leave it out and tie INT to GND when
-      it is not used. Figure 26 shows no pull-ups: the bus needs them (I2C specification).
+      Figure 26: the BMP581 on an I2C bus with separate VDDIO and VDD supplies, each with 100 nF, and CSB tied to VDDIO
+      (I2C mode). SDO is tied to VSS for the driver's default address 0x46, i2c::kI2cAddress (section 5.6); Figure 26
+      ties it to VDDIO, which gives 0x47, i2c::kI2cAddressSdoHigh. INT goes to an MCU input; leave it out and tie INT
+      to GND when it is not used. Figure 26 shows no pull-ups: the bus needs them (I2C specification).
     ref: i2cconn
     parts:
       - {id: U1, kind: chip}
@@ -196,9 +197,9 @@ circuits:
       - {id: C1, kind: capacitor, value: 100 nF, ref: i2cconn}
       - {id: C2, kind: capacitor, value: 100 nF, ref: i2cconn}
     nets:
-      - {name: "+VDDIO", kind: supply, nodes: [U1.VDDIO, U1.CSB, U1.SDO, U2.VDD, C1.1, R1.1, R2.1]}
+      - {name: "+VDDIO", kind: supply, nodes: [U1.VDDIO, U1.CSB, U2.VDD, C1.1, R1.1, R2.1]}
       - {name: "+VDD", kind: supply, nodes: [U1.VDD, C2.1]}
-      - {name: GND, kind: ground, nodes: [U1.VSS, U2.GND, C1.2, C2.2]}
+      - {name: GND, kind: ground, nodes: [C1.2, C2.2, U1.VSS, U2.GND, U1.SDO]}
       - {name: SCL, nodes: [U1.SCK, U2.SCL, R1.2]}
       - {name: SDA, nodes: [U1.SDI, U2.SDA, R2.2]}
       - {name: INT, nodes: [U1.INT, U2.INT]}

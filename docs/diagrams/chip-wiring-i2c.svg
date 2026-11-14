@@ -35,7 +35,7 @@
 <rect x="713.2" y="445.5" width="14" height="12" rx="2" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
 <text x="573" y="441.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">INT  pin 7</text>
 <text x="50" y="575.3" font-size="20" font-weight="700" fill="#9F1239">Supplies and ground</text>
-<text x="50" y="598.8" font-size="17" fill="#9F1239">+VDDIO: CSB, SDO, VDDIO; also U2.VDD · +VDD: VDD · GND: VSS; also U2.GND</text>
+<text x="50" y="598.8" font-size="17" fill="#9F1239">+VDDIO: CSB, VDDIO; also U2.VDD · +VDD: VDD · GND: SDO, VSS; also U2.GND</text>
 <text x="50" y="668.3" font-size="20" font-weight="700" fill="#334155">Also on the board</text>
 <text x="50" y="691.8" font-size="17" fill="#334155">Support parts: 2 capacitors, 2 resistors around the supplies (values in the full schematic).</text>
 <text x="32" y="737.8" font-size="16" fill="#566070">* Not confirmed in the datasheet: R1: figure 26 shows no pull-up; 4.7 kΩ to VDDIO suits 100 kHz and 400 kHz; R2: figure 26 shows no pull-up;</text>

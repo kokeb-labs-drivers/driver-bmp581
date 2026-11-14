@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="976" viewBox="0 0 1200 976" role="img" aria-labelledby="chip-wiring-spi4-title chip-wiring-spi4-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-wiring-spi4-title">Wiring: SPI 4-wire connection</title>
+<desc id="chip-wiring-spi4-desc">Wiring of the BMP581 for the SPI 4-wire connection: MCU SPI SCK to SCK (WriteRead() or Transfer()); MCU SPI MOSI to SDI (WriteRead() or Transfer()); MCU SPI MISO to SDO (Transfer()); MCU SPI CS to CSB (Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support parts are listed under the drawing.</desc>
+<rect x="0.5" y="0.5" width="1199" height="975" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#F8D27A">PINS AND WIRING</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#E8EDF3">Wiring: SPI 4-wire connection</text>
+<text x="32" y="115.4" font-size="18" fill="#9AA6B5">What you connect by hand, with the driver hook on each MCU wire. The full schematic, with every part and value, is on the</text>
+<text x="32" y="141.5" font-size="18" fill="#9AA6B5">Hardware page. Datasheet: 6.2.2 SPI 4-wire, Figure 25, p. 47.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#252F3C"/>
+<path d="M432.8 280.3 L713.2 280.3" fill="none" stroke="#60A5FA" stroke-width="2.2"/>
+<path d="M432.8 365.9 L713.2 365.9" fill="none" stroke="#60A5FA" stroke-width="2.2"/>
+<path d="M432.8 451.5 L713.2 451.5" fill="none" stroke="#A78BFA" stroke-width="2.2"/>
+<path d="M432.8 537.1 L713.2 537.1" fill="none" stroke="#2BB3A3" stroke-width="2.2"/>
+<path d="M432.8 622.7 L713.2 622.7" fill="none" stroke="#4ADE80" stroke-width="2.2"/>
+<rect x="727.2" y="175.5" width="240" height="508" rx="10" fill="#18202B" stroke="#D2DAE4" stroke-width="2.2"/>
+<rect x="232.8" y="175.5" width="200" height="508" rx="12" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="711.5" width="1136" height="79" rx="12" fill="#321820" stroke="#6E3141" stroke-width="1"/>
+<rect x="32" y="804.5" width="1136" height="79" rx="12" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="847.2" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#E8EDF3">BMP581</text>
+<text x="847.2" y="232.9" font-size="16" text-anchor="middle" fill="#9AA6B5">U1</text>
+<text x="250.8" y="210.5" font-size="20" font-weight="700" fill="#BFDBFE">MCU</text>
+<text x="250.8" y="232.9" font-size="16" fill="#BFDBFE">U2</text>
+<text x="414.8" y="286.1" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">SPI SCK</text>
+<text x="749.2" y="286.1" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SCK</text>
+<rect x="713.2" y="274.3" width="14" height="12" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="573" y="270.3" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">SCK  pin 2</text>
+<text x="573" y="303.1" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">WriteRead() or Transfer()</text>
+<text x="414.8" y="371.7" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">SPI MOSI</text>
+<text x="749.2" y="371.7" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SDI</text>
+<rect x="713.2" y="359.9" width="14" height="12" rx="2" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="573" y="355.9" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">MOSI  pin 4</text>
+<text x="573" y="388.7" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">WriteRead() or Transfer()</text>
+<text x="414.8" y="457.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">SPI MISO</text>
+<text x="749.2" y="457.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">SDO</text>
+<rect x="713.2" y="445.5" width="14" height="12" rx="2" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<text x="573" y="441.5" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">MISO  pin 5</text>
+<text x="573" y="474.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">Transfer()</text>
+<text x="573" y="495.9" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">+ R1 47 kΩ</text>
+<text x="414.8" y="542.9" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">SPI CS</text>
+<text x="749.2" y="542.9" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">CSB</text>
+<rect x="713.2" y="531.1" width="14" height="12" rx="2" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="573" y="527.1" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">CSB  pin 6</text>
+<text x="573" y="559.9" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#9AA6B5">Transfer()</text>
+<text x="414.8" y="628.5" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#BFDBFE">GPIO in (INT)</text>
+<text x="749.2" y="628.5" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#E8EDF3">INT</text>
+<rect x="713.2" y="616.7" width="14" height="12" rx="2" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="573" y="612.7" font-size="16" font-weight="600" text-anchor="middle" fill="#D2DAE4">INT  pin 7</text>
+<text x="50" y="746.5" font-size="20" font-weight="700" fill="#FECDD3">Supplies and ground</text>
+<text x="50" y="770" font-size="17" fill="#FECDD3">+VDDIO: VDDIO; also U2.VDD · +VDD: VDD · GND: VSS; also U2.GND</text>
+<text x="50" y="839.5" font-size="20" font-weight="700" fill="#E2E8F0">Also on the board</text>
+<text x="50" y="863" font-size="17" fill="#E2E8F0">Support parts: 2 capacitors, 1 resistor around the supplies (values in the full schematic).</text>
+<text x="32" y="909" font-size="16" fill="#9AA6B5">* Not confirmed in the datasheet: R1: figure 25 shows no pull-up; recommended so the SPI selection frame (section 5.1) reads 0xFF.</text>
+<rect x="32" y="926.2" width="14" height="14" rx="4" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<text x="54" y="940.8" font-size="16" fill="#9AA6B5">bus</text>
+<rect x="107.4" y="926.2" width="14" height="14" rx="4" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<text x="129.4" y="940.8" font-size="16" fill="#9AA6B5">digital in</text>
+<rect x="220.4" y="926.2" width="14" height="14" rx="4" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<text x="242.4" y="940.8" font-size="16" fill="#9AA6B5">digital out</text>
+<rect x="345.1" y="926.2" width="14" height="14" rx="4" fill="#221A3A" stroke="#A78BFA" stroke-width="1.4"/>
+<text x="367.1" y="940.8" font-size="16" fill="#9AA6B5">digital in/out</text>
+</svg>

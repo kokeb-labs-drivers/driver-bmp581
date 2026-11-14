@@ -25,6 +25,35 @@ Drawn from:
 - [`inc/bmp581_i2c_interface.hpp`](../../inc/bmp581_i2c_interface.hpp)
 - [`inc/bmp581_spi_interface.hpp`](../../inc/bmp581_spi_interface.hpp)
 
+## What the BMP581 does
+
+<!-- figure: chip-capabilities -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-capabilities.dark.svg">
+  <img src="chip-capabilities.svg"
+    alt="Capability map of the BMP581: Pressure and temperature (supported): Reads both compensated results
+    in one burst, 1/64 Pa and 1/65536 °C per count; Power modes (supported): One forced measurement on
+    request, normal mode at a set rate, continuous, standby or deep standby; Oversampling and data rate
+    (supported): Trades noise for current and speed, x1 to x128, with the rate checked against the
+    chosen oversampling; IIR filter (supported): Low-pass filters pressure and temperature, for the data
+    registers, the FIFO or the out-of-range check; FIFO (supported): Buffers up to 32 frames, streaming
+    or stop-on-full, with a threshold and decimation; Interrupts (supported): Data ready, FIFO full and
+    FIFO threshold on the INT pin, push-pull or open drain; Out-of-range detection (supported): Flags
+    pressure that leaves a window around a reference for 1, 3, 7 or 15 samples in a row; Reset and
+    identity (supported): Soft reset, chip ID and NVM checks at start, and a power-on reset found mid-
+    session; NVM, I3C and 3-wire SPI (not covered): Six user NVM bytes, the I3C bus and 3-wire SPI; the
+    driver never programs the NVM.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/bmp581_i2c_interface.hpp`](../../inc/bmp581_i2c_interface.hpp)
+- [`inc/bmp581_spi_interface.hpp`](../../inc/bmp581_spi_interface.hpp)
+
 ## BMP581: I2C connection
 
 <!-- figure: chip-circuit-i2c -->
@@ -65,6 +94,29 @@ Drawn from:
 - [`inc/bmp581_i2c_interface.hpp`](../../inc/bmp581_i2c_interface.hpp)
 - [`inc/bmp581_spi_interface.hpp`](../../inc/bmp581_spi_interface.hpp)
 
+## BMP581
+
+<!-- figure: chip-hero -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-hero.dark.svg">
+  <img src="chip-hero.svg"
+    alt="Overview of the BMP581, an absolute barometric pressure sensor that measures pressure from 30 kPa to
+    125 kPa and temperature, and linearises and compensates both on the chip. A MCU talks to it over I2C
+    or SPI; it drives INT line; it reads back Air pressure, Temperature. Headline figures: 30 to 125 kPa
+    pressure measurement range; 1/64 Pa pressure data resolution; 1.3 µA at 1 Hz in low-power mode; 1.71
+    to 3.6 V VDD; VDDIO 1.08 to 3.6 V; 12 MHz SPI clock; I2C up to 1 MHz; 2.0 x 2.0 mm LGA-10 body, 0.8
+    mm high at most.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/bmp581_i2c_interface.hpp`](../../inc/bmp581_i2c_interface.hpp)
+- [`inc/bmp581_spi_interface.hpp`](../../inc/bmp581_spi_interface.hpp)
+
 ## BMP581 pinout, LGA-10
 
 <!-- figure: chip-pinout -->
@@ -73,6 +125,47 @@ Drawn from:
   <img src="chip-pinout.svg"
     alt="Pinout of the BMP581 in LGA-10, top view: 10 pins, each with its name, its electrical type as a
     colour and the driver hook that uses it.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/bmp581_i2c_interface.hpp`](../../inc/bmp581_i2c_interface.hpp)
+- [`inc/bmp581_spi_interface.hpp`](../../inc/bmp581_spi_interface.hpp)
+
+## Wiring: I2C connection
+
+<!-- figure: chip-wiring-i2c -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-wiring-i2c.dark.svg">
+  <img src="chip-wiring-i2c.svg"
+    alt="Wiring of the BMP581 for the I2C connection: MCU I2C SCL to SCK (WriteRead() or Transfer()); MCU I2C
+    SDA to SDI (WriteRead() or Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support
+    parts are listed under the drawing.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/hardware.yml`](../hardware.yml)
+
+Drawn from:
+
+- [`docs/hardware.yml`](../hardware.yml)
+- [`inc/bmp581_i2c_interface.hpp`](../../inc/bmp581_i2c_interface.hpp)
+- [`inc/bmp581_spi_interface.hpp`](../../inc/bmp581_spi_interface.hpp)
+
+## Wiring: SPI 4-wire connection
+
+<!-- figure: chip-wiring-spi4 -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="chip-wiring-spi4.dark.svg">
+  <img src="chip-wiring-spi4.svg"
+    alt="Wiring of the BMP581 for the SPI 4-wire connection: MCU SPI SCK to SCK (WriteRead() or Transfer());
+    MCU SPI MOSI to SDI (WriteRead() or Transfer()); MCU SPI MISO to SDO (Transfer()); MCU SPI CS to CSB
+    (Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support parts are listed under the
+    drawing.">
 </picture>
 <!-- /figure -->
 

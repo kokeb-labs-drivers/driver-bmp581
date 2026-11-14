@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="828" viewBox="0 0 1200 828" role="img" aria-labelledby="chip-wiring-i2c-title chip-wiring-i2c-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="chip-wiring-i2c-title">Wiring: I2C connection</title>
+<desc id="chip-wiring-i2c-desc">Wiring of the BMP581 for the I2C connection: MCU I2C SCL to SCK (WriteRead() or Transfer()); MCU I2C SDA to SDI (WriteRead() or Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support parts are listed under the drawing.</desc>
+<rect x="0.5" y="0.5" width="1199" height="827" rx="16" fill="#FFFFFF" stroke="#E2E7EE"/>
+<text x="32" y="46.8" font-size="16" font-weight="700" letter-spacing="1.2" fill="#7A360E">PINS AND WIRING</text>
+<text x="32" y="85.6" font-size="32" font-weight="700" fill="#0E1726">Wiring: I2C connection</text>
+<text x="32" y="115.4" font-size="18" fill="#566070">What you connect by hand, with the driver hook on each MCU wire. The full schematic, with every part and value, is on the</text>
+<text x="32" y="141.5" font-size="18" fill="#566070">Hardware page. Datasheet: 6.2.3 I2C, Figure 26, p. 48.</text>
+<rect x="32" y="157.5" width="1136" height="1" fill="#E2E7EE"/>
+<path d="M432.8 280.3 L713.2 280.3" fill="none" stroke="#2563EB" stroke-width="2.2"/>
+<path d="M432.8 365.9 L713.2 365.9" fill="none" stroke="#2563EB" stroke-width="2.2"/>
+<path d="M432.8 451.5 L713.2 451.5" fill="none" stroke="#15803D" stroke-width="2.2"/>
+<rect x="727.2" y="175.5" width="240" height="336.8" rx="10" fill="#F5F7FA" stroke="#2B3442" stroke-width="2.2"/>
+<rect x="232.8" y="175.5" width="200" height="336.8" rx="12" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<rect x="32" y="540.3" width="1136" height="79" rx="12" fill="#FFEEF2" stroke="#F5BECB" stroke-width="1"/>
+<rect x="32" y="633.3" width="1136" height="79" rx="12" fill="#F1F4F8" stroke="#CBD5E1" stroke-width="1"/>
+<text x="847.2" y="210.5" font-size="20" font-weight="700" text-anchor="middle" fill="#0E1726">BMP581</text>
+<text x="847.2" y="232.9" font-size="16" text-anchor="middle" fill="#566070">U1</text>
+<text x="250.8" y="210.5" font-size="20" font-weight="700" fill="#1E429F">MCU</text>
+<text x="250.8" y="232.9" font-size="16" fill="#1E429F">U2</text>
+<text x="414.8" y="286.1" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#1E429F">I2C SCL</text>
+<text x="749.2" y="286.1" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">SCK</text>
+<rect x="713.2" y="274.3" width="14" height="12" rx="2" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="573" y="270.3" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">SCL  pin 2</text>
+<text x="573" y="303.1" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">WriteRead() or Transfer()</text>
+<text x="573" y="324.7" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">+ R1 4.7 kΩ</text>
+<text x="414.8" y="371.7" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#1E429F">I2C SDA</text>
+<text x="749.2" y="371.7" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">SDI</text>
+<rect x="713.2" y="359.9" width="14" height="12" rx="2" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="573" y="355.9" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">SDA  pin 4</text>
+<text x="573" y="388.7" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">WriteRead() or Transfer()</text>
+<text x="573" y="410.3" font-size="16" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="middle" fill="#566070">+ R2 4.7 kΩ</text>
+<text x="414.8" y="457.3" font-size="16" font-weight="600" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" text-anchor="end" fill="#1E429F">GPIO in (INT)</text>
+<text x="749.2" y="457.3" font-size="16" font-weight="700" font-family="'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace" fill="#0E1726">INT</text>
+<rect x="713.2" y="445.5" width="14" height="12" rx="2" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="573" y="441.5" font-size="16" font-weight="600" text-anchor="middle" fill="#2B3442">INT  pin 7</text>
+<text x="50" y="575.3" font-size="20" font-weight="700" fill="#9F1239">Supplies and ground</text>
+<text x="50" y="598.8" font-size="17" fill="#9F1239">+VDDIO: CSB, SDO, VDDIO; also U2.VDD · +VDD: VDD · GND: VSS; also U2.GND</text>
+<text x="50" y="668.3" font-size="20" font-weight="700" fill="#334155">Also on the board</text>
+<text x="50" y="691.8" font-size="17" fill="#334155">Support parts: 2 capacitors, 2 resistors around the supplies (values in the full schematic).</text>
+<text x="32" y="737.8" font-size="16" fill="#566070">* Not confirmed in the datasheet: R1: figure 26 shows no pull-up; 4.7 kΩ to VDDIO suits 100 kHz and 400 kHz; R2: figure 26 shows no pull-up;</text>
+<text x="32" y="760.8" font-size="16" fill="#566070">4.7 kΩ to VDDIO suits 100 kHz and 400 kHz.</text>
+<rect x="32" y="778" width="14" height="14" rx="4" fill="#EAF2FF" stroke="#2563EB" stroke-width="1.4"/>
+<text x="54" y="792.6" font-size="16" fill="#566070">bus</text>
+<rect x="107.4" y="778" width="14" height="14" rx="4" fill="#EAF7EF" stroke="#15803D" stroke-width="1.4"/>
+<text x="129.4" y="792.6" font-size="16" fill="#566070">digital out</text>
+</svg>

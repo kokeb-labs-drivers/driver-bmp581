@@ -1,0 +1,28 @@
+---
+# Model of the figure 'one-measurement-through-the-layers'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+kind: seq
+id: one-measurement-through-the-layers
+title: "One measurement through the layers"
+alt: >-
+  One call through the layers: your code calls MeasureOnce(), the core exchanges frames with the chip through your
+  port and returns the result to your code.
+reads: >-
+  Participants, left to right: Your code, BMP581<Port> and Your port. The steps run from top to bottom. Your code sends MeasureOnce() to BMP581<Port>. BMP581<Port> sends read OSR_CONFIG, ODR_CONFIG to Your port. Your port returns press_en = 1, standby to BMP581<Port>. BMP581<Port> sends write ODR_CONFIG: forced to Your port. BMP581<Port> sends read OSR_CONFIG, ODR_CONFIG (forced: started) to Your port. A note over BMP581<Port> says: wait the conversion, poll until standby. BMP581<Port> sends read TEMP_DATA..STATUS (12 bytes) to Your port. Your port returns data, reserved 0x00, INT_STATUS, STATUS to BMP581<Port>. A note over BMP581<Port> says: line, reset, reset value and range checks. BMP581<Port> returns Result<Measurement>{Ok} to Your code.
+print: landscape
+sources:
+  - docs/model/one-measurement-through-the-layers.seq.yml
+participants:
+  - {id: app, label: "Your code", tone: magenta}
+  - {id: core, label: "BMP581<Port>", tone: green}
+  - {id: port, label: "Your port", tone: teal}
+steps:
+  - {from: app, to: core, label: "MeasureOnce()"}
+  - {from: core, to: port, label: "read OSR_CONFIG, ODR_CONFIG"}
+  - {from: port, to: core, label: "press_en = 1, standby", return: true}
+  - {from: core, to: port, label: "write ODR_CONFIG: forced"}
+  - {from: core, to: port, label: "read OSR_CONFIG, ODR_CONFIG (forced: started)"}
+  - {note: "wait the conversion, poll until standby", over: [core, port]}
+  - {from: core, to: port, label: "read TEMP_DATA..STATUS (12 bytes)"}
+  - {from: port, to: core, label: "data, reserved 0x00, INT_STATUS, STATUS", return: true}
+  - {note: "line, reset, reset value and range checks", over: [core, port]}
+  - {from: core, to: app, label: "Result<Measurement>{Ok}", return: true}

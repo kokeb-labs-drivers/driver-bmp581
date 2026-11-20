@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="737" height="623" viewBox="0 0 737 623" role="img" aria-labelledby="one-measurement-through-the-layers-title one-measurement-through-the-layers-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="one-measurement-through-the-layers-title">One measurement through the layers</title>
+<desc id="one-measurement-through-the-layers-desc">One call through the layers: your code calls MeasureOnce(), the core exchanges frames with the chip through your port and returns the result to your code.</desc>
+<defs><marker id="one-measurement-through-the-layers-arrow-rail" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6C7889"/></marker></defs>
+<rect x="0.5" y="0.5" width="736" height="622" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="54.8" font-size="26" font-weight="700" fill="#E8EDF3">One measurement through the layers</text>
+<rect x="32" y="70.8" width="673" height="1" fill="#252F3C"/>
+<path d="M104.8 144.8 L104.8 626.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M299.5 144.8 L299.5 626.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M632.2 144.8 L632.2 626.8" fill="none" stroke="#6C7889" stroke-width="1.2" stroke-dasharray="5 5"/>
+<path d="M108.8 180.8 L295.5 180.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<path d="M303.5 224.8 L628.2 224.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<path d="M628.2 268.8 L303.5 268.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<path d="M303.5 312.8 L628.2 312.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<path d="M303.5 356.8 L628.2 356.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<path d="M303.5 452.8 L628.2 452.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<path d="M628.2 496.8 L303.5 496.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<path d="M295.5 592.8 L108.8 592.8" fill="none" stroke="#6C7889" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 5" marker-end="url(#one-measurement-through-the-layers-arrow-rail)"/>
+<rect x="39.8" y="88.8" width="130" height="52" rx="10" fill="#2E1533" stroke="#F0ABFC" stroke-width="1.4"/>
+<rect x="39.8" y="96.8" width="4" height="36" rx="2" fill="#F0ABFC"/>
+<rect x="220.2" y="88.8" width="158.7" height="52" rx="10" fill="#11281A" stroke="#4ADE80" stroke-width="1.4"/>
+<rect x="220.2" y="96.8" width="4" height="36" rx="2" fill="#4ADE80"/>
+<rect x="567.2" y="88.8" width="130" height="52" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="567.2" y="96.8" width="4" height="36" rx="2" fill="#2BB3A3"/>
+<rect x="229.5" y="384.8" width="472.7" height="41" rx="10" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<rect x="229.5" y="524.8" width="472.7" height="41" rx="10" fill="#2C2310" stroke="#6A5220" stroke-width="1"/>
+<text x="107.8" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#F5D0FE">Your code</text>
+<text x="302.5" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#BBF7D0">BMP581&lt;Port&gt;</text>
+<text x="635.2" y="119.3" font-size="15" font-weight="700" text-anchor="middle" fill="#A7F3E6">Your port</text>
+<rect x="148.7" y="156.8" width="106.8" height="20" rx="10" fill="#0E131A"/>
+<text x="202.1" y="171.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">MeasureOnce()</text>
+<rect x="359.1" y="200.8" width="213.6" height="20" rx="10" fill="#0E131A"/>
+<text x="465.9" y="215.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">read OSR_CONFIG, ODR_CONFIG</text>
+<rect x="393.9" y="244.8" width="143.9" height="20" rx="10" fill="#0E131A"/>
+<text x="465.9" y="259.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">press_en = 1, standby</text>
+<rect x="378.1" y="288.8" width="175.4" height="20" rx="10" fill="#0E131A"/>
+<text x="465.9" y="303.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">write ODR_CONFIG: forced</text>
+<rect x="307.5" y="332.8" width="316.7" height="20" rx="10" fill="#0E131A"/>
+<text x="465.9" y="347.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">read OSR_CONFIG, ODR_CONFIG (forced: started)</text>
+<text x="243.5" y="409.9" font-size="13" fill="#FDE68A">wait the conversion, poll until standby</text>
+<rect x="344.7" y="428.8" width="242.3" height="20" rx="10" fill="#0E131A"/>
+<text x="465.9" y="443.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">read TEMP_DATA..STATUS (12 bytes)</text>
+<rect x="325.9" y="472.8" width="280" height="20" rx="10" fill="#0E131A"/>
+<text x="465.9" y="487.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">data, reserved 0x00, INT_STATUS, STATUS</text>
+<text x="243.5" y="549.9" font-size="13" fill="#FDE68A">line, reset, reset value and range checks</text>
+<rect x="112.8" y="568.8" width="178.7" height="20" rx="10" fill="#0E131A"/>
+<text x="202.1" y="583.1" font-size="12" font-weight="500" text-anchor="middle" fill="#9AA6B5">Result&lt;Measurement&gt;{Ok}</text>
+</svg>

@@ -67,22 +67,14 @@ SPI would need an address per byte in a burst anyway (figure 9).
 </picture>
 <!-- /figure -->
 
-```mermaid
-sequenceDiagram
-    participant App as Your code
-    participant Core as BMP581<Port>
-    participant Port as Your port
-    App->>Core: MeasureOnce()
-    Core->>Port: read OSR_CONFIG, ODR_CONFIG
-    Port-->>Core: press_en = 1, standby
-    Core->>Port: write ODR_CONFIG: forced
-    Core->>Port: read OSR_CONFIG, ODR_CONFIG (forced: started)
-    Note over Core: wait the conversion, poll until standby
-    Core->>Port: read TEMP_DATA..STATUS (12 bytes)
-    Port-->>Core: data, reserved 0x00, INT_STATUS, STATUS
-    Note over Core: line, reset, reset value and range checks
-    Core-->>App: Result<Measurement>{Ok}
-```
+<!-- figure: one-measurement-through-the-layers -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="diagrams/one-measurement-through-the-layers.dark.svg">
+  <img src="diagrams/one-measurement-through-the-layers.svg"
+    alt="One call through the layers: your code calls MeasureOnce(), the core exchanges frames with the chip
+    through your port and returns the result to your code.">
+</picture>
+<!-- /figure -->
 
 ## Start-up
 

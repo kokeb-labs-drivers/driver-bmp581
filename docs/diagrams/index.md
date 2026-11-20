@@ -124,6 +124,23 @@ Drawn from:
 - `kDataReset` in [`inc/bmp581_registers.hpp`](../../inc/bmp581_registers.hpp)
 - `kPressureMinPa, kPressureMaxPa, kTemperatureMinC, kTemperatureMaxC` in [`inc/bmp581_types.hpp`](../../inc/bmp581_types.hpp)
 
+## One measurement through the layers
+
+<!-- figure: one-measurement-through-the-layers -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="one-measurement-through-the-layers.dark.svg">
+  <img src="one-measurement-through-the-layers.svg"
+    alt="One call through the layers: your code calls MeasureOnce(), the core exchanges frames with the chip
+    through your port and returns the result to your code.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/one-measurement-through-the-layers.seq.yml`](../model/one-measurement-through-the-layers.seq.yml)
+
+Drawn from:
+
+- [`docs/model/one-measurement-through-the-layers.seq.yml`](../model/one-measurement-through-the-layers.seq.yml)
+
 ## What EnsureInitialized() does
 
 <!-- figure: start-up -->

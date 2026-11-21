@@ -139,13 +139,13 @@ topics:
     section: 5.1 Protocol Selection; Table 16
     page: 31
     driver: "`SpiInterface` (the dummy read in `EnsureInitialized()`), `I2cInterface`"
-    docs: [porting, hardware]
+    docs: [porting, hardware, bus]
   - topic: SPI timing
     doc: ds
     section: 5.2.1 Interface timing; Table 18 SPI timings
     page: 32
     driver: "`spi::kMaxClockHz`, `spi::kMinCsHighNs`, `spi::kCsHoldNs`"
-    docs: [porting]
+    docs: [porting, bus]
   - topic: Read burst address increment
     doc: ds
     section: 5.4 Read burst address increment
@@ -157,13 +157,13 @@ topics:
     section: 5.5 SPI Protocol; 5.5.2 SPI Write Operation; 5.5.3 SPI read operation; 5.5.4 SPI hybrid bursts
     page: 36
     driver: "`SpiInterface`, `SpiPort`, `spi::kSpiMode`"
-    docs: [porting]
+    docs: [porting, bus]
   - topic: I2C protocol and addresses
     doc: ds
     section: 5.6 I2C protocol; 5.6.1 I2C write operation; 5.6.2 I2C read operation
     page: 38
     driver: "`I2cInterface`, `I2cPort`, `i2c::kI2cAddress`, `i2c::kI2cAddressSdoHigh`, `i2c::kMaxClockHz`"
-    docs: [porting, hardware, troubleshooting]
+    docs: [porting, hardware, troubleshooting, bus]
   - topic: Pins and connection diagrams
     doc: ds
     section: 6.1 Pin Out; 6.2 Connection Diagrams; Table 28

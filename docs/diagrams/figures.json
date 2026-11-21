@@ -116,6 +116,40 @@
       "inc/bmp581_spi_interface.hpp:SpiInterface"
     ]
   },
+  "i2c-timing": {
+    "title": "I2C address byte",
+    "alt": "I2C address byte of the BMP581: the start condition, the 7-bit address 0x46 with the write bit and the acknowledge, with the clock limit and the address rules of the datasheet.",
+    "description": "The two lanes are SCL and SDA, left to right in time. SDA falls while SCL is high (the start), the seven address bits and the write bit follow, each stable while SCL is high, then the BMP581 pulls SDA low for the acknowledge. The table gives the clock limit of fast mode plus.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/i2c-timing.timing.yml",
+    "sources": [
+      "docs/model/i2c-timing.timing.yml"
+    ],
+    "kind": "timing",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": true,
+    "font": ""
+  },
+  "i2c-topology": {
+    "title": "Two BMP581 on one I2C bus",
+    "alt": "An I2C bus on which an MCU and two BMP581 sensors share SCL and SDA, one at address 0x46 with SDO at VSS and one at 0x47 with SDO at VDDIO, with one pull-up resistor per line.",
+    "description": "The MCU on top and the two BMP581 sensors under it connect to the rails SCL and SDA on the right. The first BMP581 answers at 0x46 and the second at 0x47; one pull-up per line ties the bus to VDDIO.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/i2c-topology.topology.yml",
+    "sources": [
+      "docs/model/i2c-topology.topology.yml"
+    ],
+    "kind": "topology",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": false,
+    "font": ""
+  },
   "measurement": {
     "title": "From a conversion to a value",
     "alt": "Flow chart: MeasureOnce() or WaitDataReady() leads to one 12-byte read of TEMP_DATA to STATUS, then the checks: reserved registers and stuck lines, the reset flag, the reset value, the measurement range; each failing check returns its error, and only a frame that passes them all is a value.",
@@ -144,6 +178,23 @@
     "print": "landscape",
     "adaptive": true,
     "twin": false,
+    "font": ""
+  },
+  "spi-timing": {
+    "title": "SPI timing of a register read",
+    "alt": "SPI timing of the BMP581 in mode 0: CSB low frames the transfer, SDI is latched on each rising SCK edge and SDO changes on each falling edge, with the setup, hold, clock and select times of the datasheet.",
+    "description": "The four lanes are CSB, SCK, SDI and SDO, left to right in time. CSB goes low, SCK idles low and clocks the read bit and the register address in on SDI, then the BMP581 drives the data out on SDO after each falling edge; the bits in between are left out. CSB rises after the last edge and the table gives each interval with its value.",
+    "profile": "phone",
+    "width": 640,
+    "source": "docs/model/spi-timing.timing.yml",
+    "sources": [
+      "docs/model/spi-timing.timing.yml"
+    ],
+    "kind": "timing",
+    "palette": 2,
+    "print": "landscape",
+    "adaptive": true,
+    "twin": true,
     "font": ""
   },
   "start-up": {

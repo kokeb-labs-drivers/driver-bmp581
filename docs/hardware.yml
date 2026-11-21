@@ -175,9 +175,10 @@ circuits:
     title: I2C connection
     description: >-
       Figure 26: the BMP581 on an I2C bus with separate VDDIO and VDD supplies, each with 100 nF, and CSB tied to VDDIO
-      (I2C mode). SDO is tied to VSS for the driver's default address 0x46, i2c::kI2cAddress (section 5.6); Figure 26
-      ties it to VDDIO, which gives 0x47, i2c::kI2cAddressSdoHigh. INT goes to an MCU input; leave it out and tie INT
-      to GND when it is not used. Figure 26 shows no pull-ups: the bus needs them (I2C specification).
+      (I2C mode). SDO is tied to VSS for the driver's default address 0x46, i2c::kI2cAddress; SDO at VDDIO gives 0x47,
+      i2c::kI2cAddressSdoHigh (section 5.6). Figure 26 leaves SDO to VDDIO or VSS as the address choice. INT goes
+      to an MCU input; leave it out and tie INT to GND when it is not used. Figure 26 shows no pull-ups: the bus
+      needs them (I2C specification).
     ref: i2cconn
     parts:
       - {id: U1, kind: chip}

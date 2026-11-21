@@ -106,8 +106,9 @@ Uses named by the datasheet (1 Basic Description, [p.
 | 1.8 V to 3.3 V | VDD (10) | 100 nF to GND close to the pin |
 | GND | VSS (3, 8, 9) | INT (7) to GND when unused |
 
-The figure and the table tie SDO to GND for the default address `0x46` (`i2c::kI2cAddress`); the datasheet's I2C
-diagram (Figure 26) ties it to VDDIO, which gives `0x47` (`i2c::kI2cAddressSdoHigh`). On SPI: SCK, SDI (MOSI), SDO
+The figure and the table tie SDO to GND for the default address `0x46` (`i2c::kI2cAddress`); SDO at VDDIO gives
+`0x47` (`i2c::kI2cAddressSdoHigh`), as section 5.6 (p. 38) states. The datasheet's I2C diagram (Figure 26) leaves the
+choice open: SDO to VDDIO or VSS selects the address LSB. On SPI: SCK, SDI (MOSI), SDO
 (MISO) and CSB to the MCU's SPI pins ([Hardware](docs/hardware.md#spi)).
 
 <!-- generated: chip-card -->

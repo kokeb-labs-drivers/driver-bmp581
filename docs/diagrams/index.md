@@ -197,6 +197,40 @@ Drawn from:
 - `I2cInterface` in [`inc/bmp581_i2c_interface.hpp`](../../inc/bmp581_i2c_interface.hpp)
 - `SpiInterface` in [`inc/bmp581_spi_interface.hpp`](../../inc/bmp581_spi_interface.hpp)
 
+## I2C address byte
+
+<!-- figure: i2c-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-timing.dark.svg">
+  <img src="i2c-timing.svg"
+    alt="I2C address byte of the BMP581: the start condition, the 7-bit address 0x46 with the write bit and
+    the acknowledge, with the clock limit and the address rules of the datasheet.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-timing.timing.yml`](../model/i2c-timing.timing.yml)
+
+## Two BMP581 on one I2C bus
+
+<!-- figure: i2c-topology -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="i2c-topology.dark.svg">
+  <img src="i2c-topology.svg"
+    alt="An I2C bus on which an MCU and two BMP581 sensors share SCL and SDA, one at address 0x46 with SDO at
+    VSS and one at 0x47 with SDO at VDDIO, with one pull-up resistor per line.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/i2c-topology.topology.yml`](../model/i2c-topology.topology.yml)
+
+Drawn from:
+
+- [`docs/model/i2c-topology.topology.yml`](../model/i2c-topology.topology.yml)
+
 ## From a conversion to a value
 
 <!-- figure: measurement -->
@@ -233,6 +267,24 @@ Hardware description: [`docs/model/one-measurement-through-the-layers.seq.yml`](
 Drawn from:
 
 - [`docs/model/one-measurement-through-the-layers.seq.yml`](../model/one-measurement-through-the-layers.seq.yml)
+
+## SPI timing of a register read
+
+<!-- figure: spi-timing -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="spi-timing.dark.svg">
+  <img src="spi-timing.svg"
+    alt="SPI timing of the BMP581 in mode 0: CSB low frames the transfer, SDI is latched on each rising SCK
+    edge and SDO changes on each falling edge, with the setup, hold, clock and select times of the
+    datasheet.">
+</picture>
+<!-- /figure -->
+
+Hardware description: [`docs/model/spi-timing.timing.yml`](../model/spi-timing.timing.yml)
+
+Drawn from:
+
+- [`docs/model/spi-timing.timing.yml`](../model/spi-timing.timing.yml)
 
 ## What EnsureInitialized() does
 

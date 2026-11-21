@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="620" viewBox="0 0 640 620" role="img" aria-labelledby="i2c-topology-title i2c-topology-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" class="fk">
+<title id="i2c-topology-title">Two BMP581 on one I2C bus</title>
+<desc id="i2c-topology-desc">An I2C bus on which an MCU and two BMP581 sensors share SCL and SDA, one at address 0x46 with SDO at VSS and one at 0x47 with SDO at VDDIO, with one pull-up resistor per line.</desc>
+<style>
+.fk{--fk-amber-strong:#C26A05;--fk-amber-text:#8A3C0B;--fk-amber-tint:#FFF5E3;--fk-blue-strong:#2563EB;--fk-blue-text:#1E429F;--fk-blue-tint:#EAF2FF;--fk-brand-text:#7A360E;--fk-canvas:#FFFFFF;--fk-frame:#E2E7EE;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-ink2:#2B3442;--fk-muted:#566070;--fk-slate-soft:#CBD5E1;--fk-slate-text:#334155;--fk-slate-tint:#F1F4F8;--fk-teal-strong:#0B7A72;--fk-teal-text:#0B5F59;--fk-teal-tint:#E6F6F4;}
+@media (prefers-color-scheme:dark){.fk{--fk-amber-strong:#FBBF24;--fk-amber-text:#FDE68A;--fk-amber-tint:#2C2310;--fk-blue-strong:#60A5FA;--fk-blue-text:#BFDBFE;--fk-blue-tint:#13233A;--fk-brand-text:#F8D27A;--fk-canvas:#0E131A;--fk-frame:#283241;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-ink2:#D2DAE4;--fk-muted:#9AA6B5;--fk-slate-soft:#3A4656;--fk-slate-text:#E2E8F0;--fk-slate-tint:#1B232E;--fk-teal-strong:#2BB3A3;--fk-teal-text:#A7F3E6;--fk-teal-tint:#0F2A28;}}
+:root[data-theme="dark"] .fk,[data-md-color-scheme="slate"] .fk{--fk-amber-strong:#FBBF24;--fk-amber-text:#FDE68A;--fk-amber-tint:#2C2310;--fk-blue-strong:#60A5FA;--fk-blue-text:#BFDBFE;--fk-blue-tint:#13233A;--fk-brand-text:#F8D27A;--fk-canvas:#0E131A;--fk-frame:#283241;--fk-hair:#252F3C;--fk-ink:#E8EDF3;--fk-ink2:#D2DAE4;--fk-muted:#9AA6B5;--fk-slate-soft:#3A4656;--fk-slate-text:#E2E8F0;--fk-slate-tint:#1B232E;--fk-teal-strong:#2BB3A3;--fk-teal-text:#A7F3E6;--fk-teal-tint:#0F2A28;}
+:root[data-theme="light"] .fk,[data-md-color-scheme="default"] .fk{--fk-amber-strong:#C26A05;--fk-amber-text:#8A3C0B;--fk-amber-tint:#FFF5E3;--fk-blue-strong:#2563EB;--fk-blue-text:#1E429F;--fk-blue-tint:#EAF2FF;--fk-brand-text:#7A360E;--fk-canvas:#FFFFFF;--fk-frame:#E2E7EE;--fk-hair:#E2E7EE;--fk-ink:#0E1726;--fk-ink2:#2B3442;--fk-muted:#566070;--fk-slate-soft:#CBD5E1;--fk-slate-text:#334155;--fk-slate-tint:#F1F4F8;--fk-teal-strong:#0B7A72;--fk-teal-text:#0B5F59;--fk-teal-tint:#E6F6F4;}
+.fk-f-amber-strong{fill:var(--fk-amber-strong)}.fk-s-amber-strong{stroke:var(--fk-amber-strong)}
+.fk-f-amber-text{fill:var(--fk-amber-text)}.fk-s-amber-text{stroke:var(--fk-amber-text)}
+.fk-f-amber-tint{fill:var(--fk-amber-tint)}.fk-s-amber-tint{stroke:var(--fk-amber-tint)}
+.fk-f-blue-strong{fill:var(--fk-blue-strong)}.fk-s-blue-strong{stroke:var(--fk-blue-strong)}
+.fk-f-blue-text{fill:var(--fk-blue-text)}.fk-s-blue-text{stroke:var(--fk-blue-text)}
+.fk-f-blue-tint{fill:var(--fk-blue-tint)}.fk-s-blue-tint{stroke:var(--fk-blue-tint)}
+.fk-f-brand-text{fill:var(--fk-brand-text)}.fk-s-brand-text{stroke:var(--fk-brand-text)}
+.fk-f-canvas{fill:var(--fk-canvas)}.fk-s-canvas{stroke:var(--fk-canvas)}
+.fk-f-frame{fill:var(--fk-frame)}.fk-s-frame{stroke:var(--fk-frame)}
+.fk-f-hair{fill:var(--fk-hair)}.fk-s-hair{stroke:var(--fk-hair)}
+.fk-f-ink{fill:var(--fk-ink)}.fk-s-ink{stroke:var(--fk-ink)}
+.fk-f-ink2{fill:var(--fk-ink2)}.fk-s-ink2{stroke:var(--fk-ink2)}
+.fk-f-muted{fill:var(--fk-muted)}.fk-s-muted{stroke:var(--fk-muted)}
+.fk-f-slate-soft{fill:var(--fk-slate-soft)}.fk-s-slate-soft{stroke:var(--fk-slate-soft)}
+.fk-f-slate-text{fill:var(--fk-slate-text)}.fk-s-slate-text{stroke:var(--fk-slate-text)}
+.fk-f-slate-tint{fill:var(--fk-slate-tint)}.fk-s-slate-tint{stroke:var(--fk-slate-tint)}
+.fk-f-teal-strong{fill:var(--fk-teal-strong)}.fk-s-teal-strong{stroke:var(--fk-teal-strong)}
+.fk-f-teal-text{fill:var(--fk-teal-text)}.fk-s-teal-text{stroke:var(--fk-teal-text)}
+.fk-f-teal-tint{fill:var(--fk-teal-tint)}.fk-s-teal-tint{stroke:var(--fk-teal-tint)}
+@media (forced-colors:active){.fk text{fill:CanvasText}.fk rect,.fk circle{fill:Canvas;stroke:CanvasText}.fk path{stroke:CanvasText}.fk marker path{fill:CanvasText;stroke:none}}
+</style>
+<rect x="0.5" y="0.5" width="639" height="619" rx="16" class="fk-f-canvas fk-s-frame"/>
+<text x="32" y="44.4" font-size="13" font-weight="700" letter-spacing="1.2" class="fk-f-brand-text">SEVERAL DEVICES</text>
+<text x="32" y="76.2" font-size="24" font-weight="700" class="fk-f-ink">Two BMP581 on one I2C bus</text>
+<text x="32" y="102.7" font-size="15" class="fk-f-muted">Datasheet: 5.6 I2C protocol, p. 38; 5.1 Protocol Selection, p. 31.</text>
+<rect x="32" y="118.7" width="576" height="1" class="fk-f-hair"/>
+<path d="M542.7 170.9 L542.7 472.9" fill="none" stroke-width="2.2" class="fk-s-ink2"/>
+<path d="M495 238.9 L542.7 238.9" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M495 330.9 L542.7 330.9" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M495 422.9 L542.7 422.9" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M586.2 170.9 L586.2 472.9" fill="none" stroke-width="2.2" class="fk-s-ink2"/>
+<path d="M495 248.9 L586.2 248.9" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M495 340.9 L586.2 340.9" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M495 432.9 L586.2 432.9" fill="none" stroke-width="1.8" class="fk-s-ink2"/>
+<path d="M532.7 160.9 L596.2 160.9" fill="none" stroke-width="2" class="fk-s-ink2"/>
+<path d="M542.7 160.9 L542.7 170.9" fill="none" stroke-width="1.6" class="fk-s-ink2"/>
+<path d="M586.2 160.9 L586.2 170.9" fill="none" stroke-width="1.6" class="fk-s-ink2"/>
+<rect x="32" y="222.9" width="463" height="74" rx="10" stroke-width="1.4" class="fk-f-blue-tint fk-s-blue-strong"/>
+<rect x="32" y="230.9" width="4" height="58" rx="2" class="fk-f-blue-strong"/>
+<rect x="32" y="314.9" width="463" height="74" rx="10" stroke-width="1.4" class="fk-f-teal-tint fk-s-teal-strong"/>
+<rect x="32" y="322.9" width="4" height="58" rx="2" class="fk-f-teal-strong"/>
+<rect x="32" y="406.9" width="463" height="74" rx="10" stroke-width="1.4" class="fk-f-teal-tint fk-s-teal-strong"/>
+<rect x="32" y="414.9" width="4" height="58" rx="2" class="fk-f-teal-strong"/>
+<rect x="32" y="502.9" width="576" height="86.8" rx="10" stroke-width="1" class="fk-f-slate-tint fk-s-slate-soft"/>
+<text x="52" y="251.3" font-size="17" font-weight="700" class="fk-f-blue-text">MCU</text>
+<text x="52" y="279.1" font-size="15" class="fk-f-ink2">I2C controller</text>
+<text x="52" y="343.3" font-size="17" font-weight="700" class="fk-f-teal-text">BMP581</text>
+<text x="52" y="371.1" font-size="15" class="fk-f-ink2">0x46, SDO to VSS</text>
+<text x="52" y="435.3" font-size="17" font-weight="700" class="fk-f-teal-text">BMP581</text>
+<text x="52" y="463.1" font-size="15" class="fk-f-ink2">0x47, SDO to VDDIO</text>
+<text x="542.7" y="144.9" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">SCL</text>
+<circle cx="542.7" cy="238.9" r="3.6" class="fk-f-ink2"/>
+<circle cx="542.7" cy="330.9" r="3.6" class="fk-f-ink2"/>
+<circle cx="542.7" cy="422.9" r="3.6" class="fk-f-ink2"/>
+<text x="586.2" y="144.9" font-size="14" font-weight="700" text-anchor="middle" class="fk-f-ink">SDA</text>
+<circle cx="586.2" cy="248.9" r="3.6" class="fk-f-ink2"/>
+<circle cx="586.2" cy="340.9" r="3.6" class="fk-f-ink2"/>
+<circle cx="586.2" cy="432.9" r="3.6" class="fk-f-ink2"/>
+<rect x="538.7" y="176.9" width="8" height="22" rx="2" stroke-width="1.4" class="fk-f-amber-tint fk-s-amber-strong"/>
+<rect x="582.2" y="176.9" width="8" height="22" rx="2" stroke-width="1.4" class="fk-f-amber-tint fk-s-amber-strong"/>
+<text x="507" y="158.9" font-size="14" font-weight="600" text-anchor="end" class="fk-f-amber-text">pull-ups to VDDIO</text>
+<text x="46" y="531.3" font-size="17" font-weight="700" class="fk-f-slate-text">Limits</text>
+<text x="46" y="551.8" font-size="15" class="fk-f-slate-text">Two addresses, 0x46 and 0x47, chosen by the SDO pin (5.6, p. 38).</text>
+<text x="46" y="573.5" font-size="15" class="fk-f-slate-text">CSB tied to VDDIO selects I2C at power-up (5.1, p. 31).</text>
+</svg>

@@ -25,6 +25,17 @@ refs:
   i2cconn: {doc: ds, section: "6.2.3 I2C, Figure 26", page: 48}
   fifo: {doc: ds, section: "4.6 FIFO", page: 22}
   nvm: {doc: ds, section: "4.8 NVM Programmability", page: 29}
+  cover: {doc: ds, section: "1 Basic Description", page: 2}
+  pressure: {doc: ds, section: "2 Specification, Table 1 Pressure Performance", page: 8}
+  resolution: {doc: ds, section: "2 Specification, Table 1 Pressure Performance", page: 9}
+  mech: {doc: ds, section: "2 Specification, Table 3 Mechanical characteristics", page: 10}
+  modes: {doc: ds, section: "4.3 Power modes", page: 16}
+  postpu: {doc: ds, section: "4.3.9 Post-power-up procedure", page: 18}
+  osr: {doc: ds, section: "4.4.2 Pressure and temperature oversampling ratio (OSR)", page: 19}
+  iir: {doc: ds, section: "4.4.4 IIR filter", page: 19}
+  data: {doc: ds, section: "4.5 Data registers", page: 22}
+  irq: {doc: ds, section: "4.7 Interrupts", page: 25}
+  oor: {doc: ds, section: "4.7.2.3 Out-of-range interrupt", page: 26}
 
 package:
   type: LGA-10
@@ -32,6 +43,81 @@ package:
   layout: quad
   sides: {left: [3, 4, 5], bottom: [6, 7], right: [8, 9, 10], top: [1, 2]}
   ref: pinout
+
+supply:
+  - {name: VDD, min_v: 1.71, max_v: 3.6, ref: spec}
+  - {name: VDDIO, min_v: 1.08, max_v: 3.6, ref: spec}
+
+# The chip-first README: what the chip is and does, where it is used and how the driver covers it.
+# `kokeb-docs figures` draws chip-hero and chip-capabilities from it, `kokeb-docs gen` the README's chip-summary,
+# chip-uses and chip-coverage regions. No frame figure: an I2C or SPI access is a register stream of any length.
+overview:
+  summary: >-
+    an absolute barometric pressure sensor that measures pressure from 30 kPa to 125 kPa and temperature, and
+    linearises and compensates both on the chip
+  category: Barometric pressure sensor
+  ref: cover
+  applications:
+    - GPS navigation enhancement and dead reckoning
+    - Indoor navigation, floor and elevator detection
+    - Outdoor navigation
+    - Sports and fitness activity tracking
+    - Emergency caller location
+    - Weather forecast
+    - Vertical speed indication
+    - Altitude control of drones and flying toys
+  specs:
+    - {value: "30 to 125 kPa", label: pressure measurement range, ref: pressure}
+    - {value: "1/64 Pa", label: pressure data resolution, ref: resolution}
+    - {value: "1.3 µA", label: "at 1 Hz in low-power mode", ref: cover}
+    - {value: "1.71 to 3.6 V", label: "VDD; VDDIO 1.08 to 3.6 V", ref: spec}
+    - {value: "12 MHz", label: "SPI clock; I2C up to 1 MHz", ref: cover}
+    - {value: "2.0 x 2.0 mm", label: "LGA-10 body, 0.8 mm high at most", ref: mech}
+  system:
+    host: MCU
+    bus: I2C or SPI
+    drives:
+      - {label: INT line, detail: "data ready, FIFO and out-of-range events", ref: intpin}
+    senses:
+      - {label: Air pressure, detail: "absolute, 30 kPa to 125 kPa", ref: pressure}
+      - {label: Temperature, detail: "-40 °C to 85 °C", ref: spec}
+
+# Headers the capability `api` and `registers` names are checked against.
+driver:
+  api: [inc/bmp581.hpp, inc/bmp581_types.hpp]
+  registers: [inc/bmp581_registers.hpp]
+
+capabilities:
+  - {id: measure, title: Pressure and temperature, icon: gauge, status: supported, ref: data, docs: api-guide.md,
+     what: "Reads both compensated results in one burst, 1/64 Pa and 1/65536 °C per count",
+     api: [ReadMeasurement, PressurePa, TemperatureC],
+     registers: [PRESS_DATA_XLSB, PRESS_DATA_LSB, PRESS_DATA_MSB, TEMP_DATA_XLSB, TEMP_DATA_LSB, TEMP_DATA_MSB]}
+  - {id: modes, title: Power modes, icon: sleep, status: supported, ref: modes, docs: api-guide.md,
+     what: "One forced measurement on request, normal mode at a set rate, continuous, standby or deep standby",
+     api: [MeasureOnce, SetPowerMode, PowerMode], registers: [ODR_CONFIG]}
+  - {id: osr, title: Oversampling and data rate, icon: settings, status: supported, ref: osr,
+     docs: configuration.md,
+     what: "Trades noise for current and speed, x1 to x128, with the rate checked against the chosen oversampling",
+     api: [Oversampling, Validate, MaxOdrMilliHz, GetLastOsrEff], registers: [OSR_CONFIG, ODR_CONFIG, OSR_EFF]}
+  - {id: iir, title: IIR filter, icon: analog, status: supported, ref: iir, docs: configuration.md,
+     what: "Low-pass filters pressure and temperature, for the data registers, the FIFO or the out-of-range check",
+     api: [IirFilter, ApplyConfig], registers: [DSP_CONFIG, DSP_IIR]}
+  - {id: fifo, title: FIFO, icon: memory, status: supported, ref: fifo, docs: api-guide.md,
+     what: "Buffers up to 32 frames, streaming or stop-on-full, with a threshold and decimation",
+     api: [ReadFifo, ReadFifoCount, FifoFrame], registers: [FIFO_CONFIG, FIFO_COUNT, FIFO_SEL, FIFO_DATA]}
+  - {id: interrupts, title: Interrupts, icon: alert, status: supported, ref: irq, docs: configuration.md,
+     what: "Data ready, FIFO full and FIFO threshold on the INT pin, push-pull or open drain",
+     api: [ReadInterruptStatus, WaitDataReady, GetLatchedInterrupts], registers: [INT_CONFIG, INT_SOURCE, INT_STATUS]}
+  - {id: oor, title: Out-of-range detection, icon: check, status: supported, ref: oor, docs: configuration.md,
+     what: "Flags pressure that leaves a window around a reference for 1, 3, 7 or 15 samples in a row",
+     api: [OorCount, kOorReferenceMaxPa, ReadInterruptStatus],
+     registers: [OOR_THR_P_LSB, OOR_THR_P_MSB, OOR_RANGE, OOR_CONFIG]}
+  - {id: reset, title: Reset and identity, icon: tag, status: supported, ref: postpu, docs: contract.md,
+     what: "Soft reset, chip ID and NVM checks at start, and a power-on reset found mid-session",
+     api: [EnsureInitialized, CheckForReset, GetRevision], registers: [CMD, CHIP_ID, REV_ID, STATUS]}
+  - {id: nvm, title: "NVM, I3C and 3-wire SPI", icon: lock, status: not-covered, ref: nvm, docs: hardware.md,
+     what: "Six user NVM bytes, the I3C bus and 3-wire SPI; the driver never programs the NVM",
+     registers: [NVM_ADDR, DRIVE_CONFIG]}
 
 hooks:
   - {id: serial, call: "WriteRead() or Transfer()", kind: i2c, source: inc/bmp581_i2c_interface.hpp,
@@ -88,9 +174,11 @@ circuits:
   - id: i2c
     title: I2C connection
     description: >-
-      Figure 26: the BMP581 on an I2C bus with separate VDDIO and VDD supplies, each with 100 nF, CSB tied to VDDIO
-      (I2C mode) and SDO tied to VDDIO: address 0x47, i2c::kI2cAddressSdoHigh (SDO to VSS gives 0x46). INT goes to an MCU input; leave it out and tie INT to GND when
-      it is not used. Figure 26 shows no pull-ups: the bus needs them (I2C specification).
+      Figure 26: the BMP581 on an I2C bus with separate VDDIO and VDD supplies, each with 100 nF, and CSB tied to VDDIO
+      (I2C mode). SDO is tied to VSS for the driver's default address 0x46, i2c::kI2cAddress; SDO at VDDIO gives 0x47,
+      i2c::kI2cAddressSdoHigh (section 5.6). Figure 26 leaves SDO to VDDIO or VSS as the address choice. INT goes
+      to an MCU input; leave it out and tie INT to GND when it is not used. Figure 26 shows no pull-ups: the bus
+      needs them (I2C specification).
     ref: i2cconn
     parts:
       - {id: U1, kind: chip}
@@ -110,9 +198,9 @@ circuits:
       - {id: C1, kind: capacitor, value: 100 nF, ref: i2cconn}
       - {id: C2, kind: capacitor, value: 100 nF, ref: i2cconn}
     nets:
-      - {name: "+VDDIO", kind: supply, nodes: [U1.VDDIO, U1.CSB, U1.SDO, U2.VDD, C1.1, R1.1, R2.1]}
+      - {name: "+VDDIO", kind: supply, nodes: [U1.VDDIO, U1.CSB, U2.VDD, C1.1, R1.1, R2.1]}
       - {name: "+VDD", kind: supply, nodes: [U1.VDD, C2.1]}
-      - {name: GND, kind: ground, nodes: [U1.VSS, U2.GND, C1.2, C2.2]}
+      - {name: GND, kind: ground, nodes: [C1.2, C2.2, U1.VSS, U2.GND, U1.SDO]}
       - {name: SCL, nodes: [U1.SCK, U2.SCL, R1.2]}
       - {name: SDA, nodes: [U1.SDI, U2.SDA, R2.2]}
       - {name: INT, nodes: [U1.INT, U2.INT]}

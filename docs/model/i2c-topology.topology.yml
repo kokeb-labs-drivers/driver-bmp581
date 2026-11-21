@@ -1,0 +1,26 @@
+---
+# Model of the figure 'i2c-topology'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# Section 5.6 of the BMP581 datasheet gives two addresses chosen by the SDO pin, so two devices share one bus.
+kind: topology
+id: i2c-topology
+title: Two BMP581 on one I2C bus
+kicker: Several devices
+alt: >-
+  An I2C bus on which an MCU and two BMP581 sensors share SCL and SDA, one at address 0x46 with SDO at VSS and one
+  at 0x47 with SDO at VDDIO, with one pull-up resistor per line.
+reads: >-
+  The MCU on top and the two BMP581 sensors under it connect to the rails SCL and SDA on the right. The first BMP581
+  answers at 0x46 and the second at 0x47; one pull-up per line ties the bus to VDDIO.
+print: landscape
+sources:
+  - docs/model/i2c-topology.topology.yml
+style: bus
+host: {label: MCU, detail: I2C controller}
+nodes:
+  - {label: BMP581, address: "0x46, SDO to VSS", ref: i2c}
+  - {label: BMP581, address: "0x47, SDO to VDDIO", ref: i2c}
+shared: [SCL, SDA]
+pullups: {label: pull-ups to VDDIO}
+facts:
+  - {text: "Two addresses, 0x46 and 0x47, chosen by the SDO pin", ref: i2c}
+  - {text: "CSB tied to VDDIO selects I2C at power-up", ref: select}

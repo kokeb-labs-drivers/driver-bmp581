@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="620" viewBox="0 0 640 620" role="img" aria-labelledby="i2c-topology-title i2c-topology-desc" font-family="Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+<title id="i2c-topology-title">Two BMP581 on one I2C bus</title>
+<desc id="i2c-topology-desc">An I2C bus on which an MCU and two BMP581 sensors share SCL and SDA, one at address 0x46 with SDO at VSS and one at 0x47 with SDO at VDDIO, with one pull-up resistor per line.</desc>
+<rect x="0.5" y="0.5" width="639" height="619" rx="16" fill="#0E131A" stroke="#283241"/>
+<text x="32" y="44.4" font-size="13" font-weight="700" letter-spacing="1.2" fill="#F8D27A">SEVERAL DEVICES</text>
+<text x="32" y="76.2" font-size="24" font-weight="700" fill="#E8EDF3">Two BMP581 on one I2C bus</text>
+<text x="32" y="102.7" font-size="15" fill="#9AA6B5">Datasheet: 5.6 I2C protocol, p. 38; 5.1 Protocol Selection, p. 31.</text>
+<rect x="32" y="118.7" width="576" height="1" fill="#252F3C"/>
+<path d="M542.7 170.9 L542.7 472.9" fill="none" stroke="#D2DAE4" stroke-width="2.2"/>
+<path d="M495 238.9 L542.7 238.9" fill="none" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M495 330.9 L542.7 330.9" fill="none" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M495 422.9 L542.7 422.9" fill="none" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M586.2 170.9 L586.2 472.9" fill="none" stroke="#D2DAE4" stroke-width="2.2"/>
+<path d="M495 248.9 L586.2 248.9" fill="none" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M495 340.9 L586.2 340.9" fill="none" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M495 432.9 L586.2 432.9" fill="none" stroke="#D2DAE4" stroke-width="1.8"/>
+<path d="M532.7 160.9 L596.2 160.9" fill="none" stroke="#D2DAE4" stroke-width="2"/>
+<path d="M542.7 160.9 L542.7 170.9" fill="none" stroke="#D2DAE4" stroke-width="1.6"/>
+<path d="M586.2 160.9 L586.2 170.9" fill="none" stroke="#D2DAE4" stroke-width="1.6"/>
+<rect x="32" y="222.9" width="463" height="74" rx="10" fill="#13233A" stroke="#60A5FA" stroke-width="1.4"/>
+<rect x="32" y="230.9" width="4" height="58" rx="2" fill="#60A5FA"/>
+<rect x="32" y="314.9" width="463" height="74" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="32" y="322.9" width="4" height="58" rx="2" fill="#2BB3A3"/>
+<rect x="32" y="406.9" width="463" height="74" rx="10" fill="#0F2A28" stroke="#2BB3A3" stroke-width="1.4"/>
+<rect x="32" y="414.9" width="4" height="58" rx="2" fill="#2BB3A3"/>
+<rect x="32" y="502.9" width="576" height="86.8" rx="10" fill="#1B232E" stroke="#3A4656" stroke-width="1"/>
+<text x="52" y="251.3" font-size="17" font-weight="700" fill="#BFDBFE">MCU</text>
+<text x="52" y="279.1" font-size="15" fill="#D2DAE4">I2C controller</text>
+<text x="52" y="343.3" font-size="17" font-weight="700" fill="#A7F3E6">BMP581</text>
+<text x="52" y="371.1" font-size="15" fill="#D2DAE4">0x46, SDO to VSS</text>
+<text x="52" y="435.3" font-size="17" font-weight="700" fill="#A7F3E6">BMP581</text>
+<text x="52" y="463.1" font-size="15" fill="#D2DAE4">0x47, SDO to VDDIO</text>
+<text x="542.7" y="144.9" font-size="14" font-weight="700" text-anchor="middle" fill="#E8EDF3">SCL</text>
+<circle cx="542.7" cy="238.9" r="3.6" fill="#D2DAE4"/>
+<circle cx="542.7" cy="330.9" r="3.6" fill="#D2DAE4"/>
+<circle cx="542.7" cy="422.9" r="3.6" fill="#D2DAE4"/>
+<text x="586.2" y="144.9" font-size="14" font-weight="700" text-anchor="middle" fill="#E8EDF3">SDA</text>
+<circle cx="586.2" cy="248.9" r="3.6" fill="#D2DAE4"/>
+<circle cx="586.2" cy="340.9" r="3.6" fill="#D2DAE4"/>
+<circle cx="586.2" cy="432.9" r="3.6" fill="#D2DAE4"/>
+<rect x="538.7" y="176.9" width="8" height="22" rx="2" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<rect x="582.2" y="176.9" width="8" height="22" rx="2" fill="#2C2310" stroke="#FBBF24" stroke-width="1.4"/>
+<text x="507" y="158.9" font-size="14" font-weight="600" text-anchor="end" fill="#FDE68A">pull-ups to VDDIO</text>
+<text x="46" y="531.3" font-size="17" font-weight="700" fill="#E2E8F0">Limits</text>
+<text x="46" y="551.8" font-size="15" fill="#E2E8F0">Two addresses, 0x46 and 0x47, chosen by the SDO pin (5.6, p. 38).</text>
+<text x="46" y="573.5" font-size="15" fill="#E2E8F0">CSB tied to VDDIO selects I2C at power-up (5.1, p. 31).</text>
+</svg>

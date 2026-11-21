@@ -100,72 +100,6 @@
   <meta property="og:description" content="C++20 driver for the Bosch BMP581 barometric pressure and temperature sensor on I2C and SPI.">
   <meta property="og:url" content="https://kokeb-labs-drivers.github.io/driver-bmp581/latest/">
   <meta name="twitter:card" content="summary">
-  <script>
-(function () {
-  if (typeof mermaid != "undefined" && !(mermaid instanceof Element)) return;
-  var SRC = "https://unpkg.com/mermaid@11.17.2/dist/mermaid.min.js",
-      SRI = "sha384-EOXBFmc3gx5mb+vn0vPvvGqACToJD24hhacX5Yx+8NUUQrHIle/Qi5Bg9o3zKwW2", config = {}, real, loading;
-  var waiting = [], io = null, ahead = false, ENGAGE = ["scroll", "keydown", "pointerdown", "touchstart"];
-  var stub = {
-    initialize: function (c) { config = c || {}; if (real) real.initialize(config); },
-    render: function (id, text) {
-      var el = null, pres = document.querySelectorAll("pre.mermaid:not([data-kb-mermaid])");
-      for (var i = 0; i < pres.length && !el; i++) if (pres[i].textContent === text) el = pres[i];
-      if (el) el.setAttribute("data-kb-mermaid", "");
-      return near(el).then(load).then(function (m) { return m.render(id, text); });
-    }
-  };
-  function load() {
-    return loading || (loading = new Promise(function (resolve, reject) {
-      var s = document.createElement("script");
-      s.src = SRC;
-      s.integrity = SRI;
-      s.crossOrigin = "anonymous";
-      s.onload = function () {
-        real = window.mermaid;
-        window.mermaid = stub;
-        real.initialize(config);
-        resolve(real);
-      };
-      s.onerror = function () { loading = null; reject(new Error("Mermaid did not load")); };
-      document.head.appendChild(s);
-    }));
-  }
-  // One observer for the diagrams still waiting: on the screen only until the reader engages, then a screen ahead.
-  function watch() {
-    if (io) io.disconnect();
-    io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) release(function (w) { return w.el === e.target; });
-      });
-    }, { rootMargin: ahead ? "100% 0px" : "0px" });
-    waiting.forEach(function (w) { io.observe(w.el); });
-  }
-  function release(which) {
-    waiting = waiting.filter(function (w) {
-      if (!which(w)) return true;
-      io.unobserve(w.el);
-      w.go();
-      return false;
-    });
-  }
-  function near(el) {
-    if (real || !el || !("IntersectionObserver" in window)) return Promise.resolve();
-    return new Promise(function (resolve) {
-      waiting.push({ el: el, go: resolve });
-      if (io) io.observe(el); else watch();
-    });
-  }
-  function engaged() {
-    ENGAGE.forEach(function (t) { window.removeEventListener(t, engaged, true); });
-    ahead = true;
-    if (io) watch();
-  }
-  ENGAGE.forEach(function (t) { window.addEventListener(t, engaged, { capture: true, passive: true }); });
-  window.addEventListener("beforeprint", function () { if (io) release(function () { return true; }); });
-  window.mermaid = stub;
-})();
-</script>
 
   </head>
   
@@ -537,6 +471,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver coverage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#what-you-get" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -544,6 +545,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -585,6 +591,8 @@
   
     
     
+      
+        
       
         
       
@@ -862,6 +870,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-it-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-it-is-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where it is used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inside-the-chip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inside the chip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pins-and-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pins and wiring
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Driver coverage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Driver coverage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#what-you-get" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -869,6 +944,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -931,9 +1011,81 @@ reset value or an out-of-range reading as a measurement, on any MCU.</p>
 <a class="md-button" href="api-guide/">API guide</a>
 <a class="md-button" href="https://github.com/kokeb-labs-drivers/driver-bmp581">Source on GitHub</a></p>
 </div>
-<p>The driver has no platform code. You give it a small class that brings the bus up and moves bytes; it does the
-rest: the soft reset and the post-power-up checks, the configuration written in standby and read back, the
-power modes, the data and FIFO reads, the conversion to pascals and degrees Celsius, and the reset check.</p>
+<!-- generated: chip-summary -->
+<p>The <strong>BMP581</strong> is an absolute barometric pressure sensor that measures pressure from 30 kPa to 125 kPa and temperature,
+and linearises and compensates both on the chip (1 Basic Description, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=2">p.
+2</a>).</p>
+<!-- /generated -->
+
+<figure class="kb-figure">
+<img src="diagrams/chip-hero.svg#only-light" alt="Overview of the BMP581, an absolute barometric pressure sensor that measures pressure from 30 kPa to 125 kPa and temperature, and linearises and compensates both on the chip. A MCU talks to it over I2C or SPI; it drives INT line; it reads back Air pressure, Temperature. Headline figures: 30 to 125 kPa pressure measurement range; 1/64 Pa pressure data resolution; 1.3 µA at 1 Hz in low-power mode; 1.71 to 3.6 V VDD; VDDIO 1.08 to 3.6 V; 12 MHz SPI clock; I2C up to 1 MHz; 2.0 x 2.0 mm LGA-10 body, 0.8 mm high at most." width="1200" height="817"><img src="diagrams/chip-hero.dark.svg#only-dark" alt="Overview of the BMP581, an absolute barometric pressure sensor that measures pressure from 30 kPa to 125 kPa and temperature, and linearises and compensates both on the chip. A MCU talks to it over I2C or SPI; it drives INT line; it reads back Air pressure, Temperature. Headline figures: 30 to 125 kPa pressure measurement range; 1/64 Pa pressure data resolution; 1.3 µA at 1 Hz in low-power mode; 1.71 to 3.6 V VDD; VDDIO 1.08 to 3.6 V; 12 MHz SPI clock; I2C up to 1 MHz; 2.0 x 2.0 mm LGA-10 body, 0.8 mm high at most." width="1200" height="817">
+<figcaption>BMP581</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The BMP581 in the middle, drawn as its LGA-10 package. On the left the MCU that runs the driver, joined to it by I2C or SPI. To the right, what the chip drives, in the order the power flows. Below it, what the chip reads back. The tiles at the bottom are the headline numbers, each with the datasheet section and page it comes from.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a>.</p>
+</details>
+<h2 id="what-it-does">What it does<a class="headerlink" href="#what-it-does" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-capabilities.svg#only-light" alt="Capability map of the BMP581: Pressure and temperature (supported): Reads both compensated results in one burst, 1/64 Pa and 1/65536 °C per count; Power modes (supported): One forced measurement on request, normal mode at a set rate, continuous, standby or deep standby; Oversampling and data rate (supported): Trades noise for current and speed, x1 to x128, with the rate checked against the chosen oversampling; IIR filter (supported): Low-pass filters pressure and temperature, for the data registers, the FIFO or the out-of-range check; FIFO (supported): Buffers up to 32 frames, streaming or stop-on-full, with a threshold and decimation; Interrupts (supported): Data ready, FIFO full and FIFO threshold on the INT pin, push-pull or open drain; Out-of-range detection (supported): Flags pressure that leaves a window around a reference for 1, 3, 7 or 15 samples in a row; Reset and identity (supported): Soft reset, chip ID and NVM checks at start, and a power-on reset found mid-session; NVM, I3C and 3-wire SPI (not covered): Six user NVM bytes, the I3C bus and 3-wire SPI; the driver never programs the NVM." width="1200" height="1104" loading="lazy"><img src="diagrams/chip-capabilities.dark.svg#only-dark" alt="Capability map of the BMP581: Pressure and temperature (supported): Reads both compensated results in one burst, 1/64 Pa and 1/65536 °C per count; Power modes (supported): One forced measurement on request, normal mode at a set rate, continuous, standby or deep standby; Oversampling and data rate (supported): Trades noise for current and speed, x1 to x128, with the rate checked against the chosen oversampling; IIR filter (supported): Low-pass filters pressure and temperature, for the data registers, the FIFO or the out-of-range check; FIFO (supported): Buffers up to 32 frames, streaming or stop-on-full, with a threshold and decimation; Interrupts (supported): Data ready, FIFO full and FIFO threshold on the INT pin, push-pull or open drain; Out-of-range detection (supported): Flags pressure that leaves a window around a reference for 1, 3, 7 or 15 samples in a row; Reset and identity (supported): Soft reset, chip ID and NVM checks at start, and a power-on reset found mid-session; NVM, I3C and 3-wire SPI (not covered): Six user NVM bytes, the I3C bus and 3-wire SPI; the driver never programs the NVM." width="1200" height="1104" loading="lazy">
+<figcaption>What the BMP581 does</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>Each card is one function of the BMP581: an icon, its name and what it does for the application. The filled pill says how this driver covers it (legend below); the outlined pills are the chip registers behind it. The coverage table in the README gives the driver calls and the datasheet section of each card.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a>.</p>
+</details>
+<h2 id="where-it-is-used">Where it is used<a class="headerlink" href="#where-it-is-used" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-uses -->
+<ul>
+<li>GPS navigation enhancement and dead reckoning</li>
+<li>Indoor navigation, floor and elevator detection</li>
+<li>Outdoor navigation</li>
+<li>Sports and fitness activity tracking</li>
+<li>Emergency caller location</li>
+<li>Weather forecast</li>
+<li>Vertical speed indication</li>
+<li>Altitude control of drones and flying toys</li>
+</ul>
+<p>Uses named by the datasheet (1 Basic Description, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=2">p.
+2</a>).</p>
+<!-- /generated -->
+
+<h2 id="inside-the-chip">Inside the chip<a class="headerlink" href="#inside-the-chip" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-blocks.svg#only-light" alt="Block diagram of the BMP581: its function blocks, how they connect and which package pins reach each block." width="1200" height="839" loading="lazy"><img src="diagrams/chip-blocks.dark.svg#only-dark" alt="Block diagram of the BMP581: its function blocks, how they connect and which package pins reach each block." width="1200" height="839" loading="lazy">
+<figcaption>Inside the BMP581</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The BMP581's function blocks inside its outline. Arrows between blocks carry signals or data in the direction they point (both ways where they have two heads). The package pins stand on the left and right edges with their numbers, each wired to the block it reaches.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a>.</p>
+</details>
+<h2 id="pins-and-wiring">Pins and wiring<a class="headerlink" href="#pins-and-wiring" title="Permanent link">&para;</a></h2>
+<figure class="kb-figure">
+<img src="diagrams/chip-pinout.svg#only-light" alt="Pinout of the BMP581 in LGA-10, top view: 10 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="987" height="1095" loading="lazy"><img src="diagrams/chip-pinout.dark.svg#only-dark" alt="Pinout of the BMP581 in LGA-10, top view: 10 pins, each with its name, its electrical type as a colour and the driver hook that uses it." width="987" height="1095" loading="lazy">
+<figcaption>BMP581 pinout, LGA-10</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The BMP581 seen from the top, in its LGA-10 package. Pin 1 is marked by the dot; the numbers run counter-clockwise from it. Each pad is coloured by the pin's electrical type (legend below). Next to it is the pin's name and, in mono, the hook of the driver's port that drives or reads it; a pin without a hook is not used by the driver.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a>.</p>
+</details>
+<figure class="kb-figure">
+<img src="diagrams/chip-wiring-i2c.svg#only-light" alt="Wiring of the BMP581 for the I2C connection: MCU I2C SCL to SCK (WriteRead() or Transfer()); MCU I2C SDA to SDI (WriteRead() or Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="828" loading="lazy"><img src="diagrams/chip-wiring-i2c.dark.svg#only-dark" alt="Wiring of the BMP581 for the I2C connection: MCU I2C SCL to SCK (WriteRead() or Transfer()); MCU I2C SDA to SDI (WriteRead() or Transfer()); MCU GPIO in (INT) to INT. Supplies, grounds and the support parts are listed under the drawing." width="1200" height="828" loading="lazy">
+<figcaption>Wiring: I2C connection</figcaption>
+</figure>
+
+<details class="kb-figure-desc">
+<summary>Figure description and sources</summary>
+<p>The MCU on the left, the BMP581 in the middle. Each wire to the chip is coloured by the chip pin's electrical type and carries the net name and the chip pin number above it and, under it, the driver hooks that use it (and any part on the net). The boxes underneath list the supplies, the support parts and the pins this circuit leaves unconnected.</p>
+<p>Drawn from: <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_i2c_interface.hpp"><code>inc/bmp581_i2c_interface.hpp</code></a>; <a href="https://github.com/kokeb-labs-drivers/driver-bmp581/blob/867ffb8de22426eed7c79c2a43bb9dde0c0ff200/inc/bmp581_spi_interface.hpp"><code>inc/bmp581_spi_interface.hpp</code></a>.</p>
+</details>
 <div class="kb-chip">
 <div class="kb-chip__head">
 <span class="kb-chip__kicker">Barometric pressure sensor</span>
@@ -955,7 +1107,128 @@ and pressure out of range</dd>
 <dd>VDD 1.71 V to 3.6 V, VDDIO 1.08 V to 3.6 V; 1.3 µA at 1 Hz in low-power mode</dd>
 </dl>
 </div>
-<h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h2>
+<p>Every pin, the reference circuits, the bus settings, the timing and the power: <a href="hardware/">Hardware</a>.</p>
+<h2 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h2>
+<p>Wire the chip as above, write the port for your MCU (<a href="porting/">Porting</a>), then:</p>
+<!-- generated: quickstart-code -->
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">"bmp581.hpp"</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">read_pressure</span><span class="p">(</span><span class="n">MyPort</span><span class="o">&amp;</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pascals</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">celsius</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">bmp581</span><span class="o">::</span><span class="n">BMP581</span><span class="o">&lt;</span><span class="n">MyPort</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sensor</span><span class="p">(</span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="n">bmp581</span><span class="o">::</span><span class="n">ForcedPreset</span><span class="p">());</span><span class="w"> </span><span class="c1">// no I/O yet</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">EnsureInitialized</span><span class="p">();</span><span class="w"> </span><span class="o">!</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 1. soft reset, CHIP_ID, NVM ready, Config</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//    NoDevice, Bus or DeviceIdMismatch: check wiring</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sensor</span><span class="p">.</span><span class="n">MeasureOnce</span><span class="p">();</span><span class="w"> </span><span class="c1">// 2. one forced measurement, then standby</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">error</span><span class="p">);</span><span class="w"> </span><span class="c1">//    every failure is an Error, never a number</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="n">pascals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bmp581</span><span class="o">::</span><span class="n">PressurePa</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">pressure_raw</span><span class="p">);</span><span class="w">      </span><span class="c1">// 3. 1/64 Pa, exact</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="n">celsius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bmp581</span><span class="o">::</span><span class="n">TemperatureC</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">temperature_raw</span><span class="p">);</span><span class="w"> </span><span class="c1">//    1/65536 °C, exact</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<!-- /generated -->
+
+<p>Step by step, from a bare chip to the first result: <a href="quickstart/">Quickstart</a>.</p>
+<h2 id="driver-coverage">Driver coverage<a class="headerlink" href="#driver-coverage" title="Permanent link">&para;</a></h2>
+<!-- generated: chip-coverage -->
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What the chip does</th>
+<th>Driver API</th>
+<th>Registers</th>
+<th>Status</th>
+<th>Datasheet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="api-guide/">Pressure and temperature</a></td>
+<td>Reads both compensated results in one burst, 1/64 Pa and 1/65536 °C per count</td>
+<td><code>ReadMeasurement</code>, <code>PressurePa</code>, <code>TemperatureC</code></td>
+<td><code>PRESS_DATA_XLSB</code>, <code>PRESS_DATA_LSB</code>, <code>PRESS_DATA_MSB</code>, <code>TEMP_DATA_XLSB</code>, <code>TEMP_DATA_LSB</code>, <code>TEMP_DATA_MSB</code></td>
+<td>Supported</td>
+<td>4.5, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=22">p. 22</a></td>
+</tr>
+<tr>
+<td><a href="api-guide/">Power modes</a></td>
+<td>One forced measurement on request, normal mode at a set rate, continuous, standby or deep standby</td>
+<td><code>MeasureOnce</code>, <code>SetPowerMode</code>, <code>PowerMode</code></td>
+<td><code>ODR_CONFIG</code></td>
+<td>Supported</td>
+<td>4.3, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=16">p. 16</a></td>
+</tr>
+<tr>
+<td><a href="configuration/">Oversampling and data rate</a></td>
+<td>Trades noise for current and speed, x1 to x128, with the rate checked against the chosen oversampling</td>
+<td><code>Oversampling</code>, <code>Validate</code>, <code>MaxOdrMilliHz</code>, <code>GetLastOsrEff</code></td>
+<td><code>OSR_CONFIG</code>, <code>ODR_CONFIG</code>, <code>OSR_EFF</code></td>
+<td>Supported</td>
+<td>4.4.2, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=19">p. 19</a></td>
+</tr>
+<tr>
+<td><a href="configuration/">IIR filter</a></td>
+<td>Low-pass filters pressure and temperature, for the data registers, the FIFO or the out-of-range check</td>
+<td><code>IirFilter</code>, <code>ApplyConfig</code></td>
+<td><code>DSP_CONFIG</code>, <code>DSP_IIR</code></td>
+<td>Supported</td>
+<td>4.4.4, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=19">p. 19</a></td>
+</tr>
+<tr>
+<td><a href="api-guide/">FIFO</a></td>
+<td>Buffers up to 32 frames, streaming or stop-on-full, with a threshold and decimation</td>
+<td><code>ReadFifo</code>, <code>ReadFifoCount</code>, <code>FifoFrame</code></td>
+<td><code>FIFO_CONFIG</code>, <code>FIFO_COUNT</code>, <code>FIFO_SEL</code>, <code>FIFO_DATA</code></td>
+<td>Supported</td>
+<td>4.6, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=22">p. 22</a></td>
+</tr>
+<tr>
+<td><a href="configuration/">Interrupts</a></td>
+<td>Data ready, FIFO full and FIFO threshold on the INT pin, push-pull or open drain</td>
+<td><code>ReadInterruptStatus</code>, <code>WaitDataReady</code>, <code>GetLatchedInterrupts</code></td>
+<td><code>INT_CONFIG</code>, <code>INT_SOURCE</code>, <code>INT_STATUS</code></td>
+<td>Supported</td>
+<td>4.7, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=25">p. 25</a></td>
+</tr>
+<tr>
+<td><a href="configuration/">Out-of-range detection</a></td>
+<td>Flags pressure that leaves a window around a reference for 1, 3, 7 or 15 samples in a row</td>
+<td><code>OorCount</code>, <code>kOorReferenceMaxPa</code>, <code>ReadInterruptStatus</code></td>
+<td><code>OOR_THR_P_LSB</code>, <code>OOR_THR_P_MSB</code>, <code>OOR_RANGE</code>, <code>OOR_CONFIG</code></td>
+<td>Supported</td>
+<td>4.7.2.3, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=26">p. 26</a></td>
+</tr>
+<tr>
+<td><a href="contract/">Reset and identity</a></td>
+<td>Soft reset, chip ID and NVM checks at start, and a power-on reset found mid-session</td>
+<td><code>EnsureInitialized</code>, <code>CheckForReset</code>, <code>GetRevision</code></td>
+<td><code>CMD</code>, <code>CHIP_ID</code>, <code>REV_ID</code>, <code>STATUS</code></td>
+<td>Supported</td>
+<td>4.3.9, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=18">p. 18</a></td>
+</tr>
+<tr>
+<td><a href="hardware/">NVM, I3C and 3-wire SPI</a></td>
+<td>Six user NVM bytes, the I3C bus and 3-wire SPI; the driver never programs the NVM</td>
+<td>-</td>
+<td><code>NVM_ADDR</code>, <code>DRIVE_CONFIG</code></td>
+<td>Not covered</td>
+<td>4.8, <a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp581-ds004.pdf#page=29">p. 29</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supported</strong>: the driver covers it and a host test checks it; <strong>Not covered</strong>: the chip has it and the driver leaves it
+alone.</p>
+<p>From <a href="hardware.yml"><code>docs/hardware.yml</code></a>; <code>kokeb-docs hardware --check</code> confirms that every API name is in
+<code>inc/bmp581.hpp</code>, <code>inc/bmp581_types.hpp</code> and every register in <code>inc/bmp581_registers.hpp</code>.</p>
+<!-- /generated -->
+
+<p>The driver has no platform code. You give it a small class that brings the bus up and moves bytes; it does the
+rest: the soft reset and the post-power-up checks, the configuration written in standby and read back, the
+power modes, the data and FIFO reads, the conversion to pascals and degrees Celsius, and the reset check.</p>
+<h3 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>One object per chip, on either bus.</strong> <code>BMP581&lt;YourPort&gt;</code> takes a reference to an I2C or an SPI port and does
   no I/O until <code>EnsureInitialized()</code>. See <a href="api-guide/">API guide</a>.</li>

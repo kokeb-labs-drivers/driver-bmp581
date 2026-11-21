@@ -1,0 +1,55 @@
+---
+# Model of the figure 'spi-timing'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# Every number is a param with the datasheet section and page it comes from (Figure 7 and Table 18 of the BMP581
+# datasheet); a number without one fails the build. Wave characters and keys: docs/figkit.md in ci-tools.
+kind: timing
+id: spi-timing
+title: SPI timing of a register read
+kicker: On the bus
+alt: >-
+  SPI timing of the BMP581 in mode 0: CSB low frames the transfer, SDI is latched on each rising SCK edge and SDO
+  changes on each falling edge, with the setup, hold, clock and select times of the datasheet.
+reads: >-
+  The four lanes are CSB, SCK, SDI and SDO, left to right in time. CSB goes low, SCK idles low and clocks the read
+  bit and the register address in on SDI, then the BMP581 drives the data out on SDO after each falling edge; the
+  bits in between are left out. CSB rises after the last edge and the table gives each interval with its value.
+print: landscape
+sources:
+  - docs/model/spi-timing.timing.yml
+bus: spi
+mode: {cpol: 0, cpha: 0}
+refs:
+  spi-timing: {doc: ds, section: "5.2.1 Interface timing, Table 18 SPI timings", page: 32}
+  spi-lowv: {doc: ds, section: "2 Specification, Table 4 Electrical characteristics", page: 11}
+signals:
+  - {id: csb, label: CSB, wave: "10........1."}
+  - {id: sck, label: SCK, wave: "0.nnn|nnn0..", clock: true}
+  - {id: sdi, label: SDI, wave: "x.===|x.....", data: [RW, A6, A5]}
+  - {id: sdo, label: SDO, wave: "z....|===z..", data: [D2, D1, D0], tone: teal}
+groups:
+  - {from: 2, to: 5, label: "read bit and register address", ref: spi}
+  - {from: 6, to: 9, label: data, ref: spi}
+params:
+  - {id: tsu, symbol: T_setup_sdx, label: SDI setup time before the rising SCK edge, min: 19, unit: ns,
+     ref: spi-timing}
+  - {id: th, symbol: T_hold_sdx, label: SDI hold time after the rising SCK edge, min: 7, unit: ns, ref: spi-timing}
+  - {id: thigh, symbol: T_high_scx, label: SCK high time, min: 37.5, unit: ns, ref: spi-timing}
+  - {id: tlow, symbol: T_low_scx, label: SCK low time, min: 37.5, unit: ns, ref: spi-timing}
+  - {id: tdelay, symbol: T_delay_scl2sdo_3p3, label: "Falling SCK edge to SDO valid, VDDIO 3.3 V", max: 20.2,
+     unit: ns, ref: spi-timing}
+  - {id: thcsb, symbol: T_hold_csb, label: Last SCK edge to CSB high (CSB lag time), min: 40, unit: ns,
+     ref: spi-timing}
+  - {id: tidle, symbol: "T_rd_idle,spi", label: CSB high time after a read access, min: 80, unit: ns, ref: spi-timing}
+  - {id: fsck, symbol: "F_sck,nv", label: "SCK frequency, VDDIO 1.8 V or 3.3 V", min: 1, max: 12, unit: MHz,
+     ref: spi-timing}
+  - {id: fspi-lowv, symbol: fspi_lowv, label: "SPI clock with VDDIO at or below 1.62 V", max: 7, unit: MHz,
+     ref: spi-lowv}
+marks:
+  - {param: tsu, signal: sdi, from: 2, to: 2.5}
+  - {param: th, signal: sdi, from: 2.5, to: 3}
+  - {param: tlow, signal: sck, from: 3, to: 3.5}
+  - {param: thigh, signal: sck, from: 3.5, to: 4}
+  - {param: tdelay, signal: sdo, from: 6, to: 6.4}
+  - {param: thcsb, signal: csb, from: 9, to: 10}
+notes:
+  - {text: "Mode 0 or mode 3: the chip takes the SCK level after CSB falls.", ref: spi}

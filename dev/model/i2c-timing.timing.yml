@@ -1,0 +1,32 @@
+---
+# Model of the figure 'i2c-timing'. Edit this file; `kokeb-docs figures` draws it. Never edit the SVGs.
+# The BMP581 datasheet gives no I2C timing table: section 5.2.2 refers to the I2C-bus specification. The figure
+# draws only what the datasheet gives: the bus modes, the addresses and the write frame of section 5.6.1.
+kind: timing
+id: i2c-timing
+title: I2C address byte
+kicker: On the bus
+alt: >-
+  I2C address byte of the BMP581: the start condition, the 7-bit address 0x46 with the write bit and the
+  acknowledge, with the clock limit and the address rules of the datasheet.
+reads: >-
+  The two lanes are SCL and SDA, left to right in time. SDA falls while SCL is high (the start), the seven address
+  bits and the write bit follow, each stable while SCL is high, then the BMP581 pulls SDA low for the acknowledge.
+  The table gives the clock limit of fast mode plus.
+print: landscape
+sources:
+  - docs/model/i2c-timing.timing.yml
+bus: i2c
+refs:
+  i2c-write: {doc: ds, section: "5.6.1 I2C write operation", page: 39}
+signals:
+  - {id: scl, label: SCL, wave: "11nnnnnnnnn1"}
+  - {id: sda, label: SDA, wave: "10========0.", data: [A6, A5, A4, A3, A2, A1, A0, W]}
+groups:
+  - {from: 2, to: 9, label: "address 0x46 (SDO low) and W", ref: i2c}
+  - {from: 10, to: 11, label: ACK, ref: i2c-write}
+params:
+  - {id: fscl, symbol: fSCL, label: "SCL clock frequency, fast mode plus", max: 1, unit: MHz, ref: i2c}
+notes:
+  - {text: "SDO high gives address 0x47; SDO must not float.", ref: i2c}
+  - {text: "The register address byte carries 7 valid bits; its MSB is ignored.", ref: i2c-write}
